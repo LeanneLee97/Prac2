@@ -4,13 +4,14 @@ public class Main {
     public static void main(String[] args) {
         //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
         // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("test by LY Hello and welcome! Updated Test by Ibrahim");
+        System.out.println("test by LY Hello and welcome! Updated Test by " +
+                "Ibrahim");
         System.out.println("Testing of push Ibrahim");
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
-        }
+//        for (int i = 1; i <= 5; i++) {
+//            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
+//            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
+//            System.out.println("i = " + i);
+//        }
     }
 }
