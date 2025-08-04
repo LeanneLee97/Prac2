@@ -1,23 +1,23 @@
 public class UpdateCommand implements Command {
-    private final TaskList taskList;
+    private final Receiver taskList;
     private final int index;
-    private final Task updatedTask;
-    private Task previousTask;
+    private final Payload updatedTask;
+    private Payload previousTask;
 
-    public UpdateCommand(TaskList taskList, int index, Task updatedTask) {
+    public UpdateCommand(Receiver taskList, Payload payload) {
         this.taskList = taskList;
-        this.index = index;
-        this.updatedTask = updatedTask;
+        this.index = Integer.parseInt(payload.getIndex());
+        this.updatedTask = payload;
     }
 
     @Override
     public void execute() {
-        previousTask = taskList.get(index);
-        taskList.update(index, updatedTask);
+        previousTask = Receiver.getTask(index);
+        taskList.changeTask(index, updatedTask);
     }
 
     @Override
     public void undo() {
-        taskList.update(index, previousTask);
+        taskList.changeTask(index, previousTask);
     }
 }

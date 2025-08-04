@@ -1,23 +1,23 @@
 public class DeleteCommand implements Command {
-    private final TaskList taskList;
+    private final Receiver taskList;
     private final int index;
-    private Task removedTask;
+    private Payload removedTask;
 
-    public DeleteCommand(TaskList taskList, int index) {
+    public DeleteCommand(Receiver taskList, Payload payload) {
         this.taskList = taskList;
-        this.index = index;
+        this.index = Integer.parseInt(payload.getIndex());
     }
 
     @Override
     public void execute() {
-        removedTask = taskList.get(index);
-        taskList.delete(index);
+        removedTask = Receiver.getTask(index);
+        taskList.deleteTask(index, removedTask);
     }
 
     @Override
     public void undo() {
         if (removedTask != null) {
-            taskList.insert(index, removedTask);
+            taskList.readdTask(index, removedTask);
         }
     }
 }

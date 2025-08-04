@@ -1,13 +1,13 @@
 public class ListCommand implements Command {
-    private final TaskList taskList;
+    private final Receiver taskList;
 
-    public ListCommand(TaskList taskList) {
+    public ListCommand(Receiver taskList) {
         this.taskList = taskList;
     }
 
     @Override
     public void execute() {
-        taskList.list();
+        taskList.getAllTasks();
     }
 
     @Override
