@@ -13,7 +13,4 @@ public class Todo extends Task {
         super(description);
    //     this.setSymbol("T");
     }
-
-    public void add(Storage record) {
-    }
 }

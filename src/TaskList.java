@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class TaskList {
 
-    private ArrayList<Task> list;
+    ArrayList<Task> list;
 
     /**
      * Instantiates a TaskList object with an empty ArrayList.
@@ -88,4 +88,25 @@ public class TaskList {
         list.set(index, t);
     }
 
+    public void add(Task task) {
+    }
+
+    public void remove(Task task) {
+    }
+
+    public Task get(int index) {
+        return index; // to be edited
+    }
+
+    public void update(int index, Task updatedTask) {
+    }
+
+    public void delete(int index) {
+    }
+
+    public void insert(int index, Task removedTask) {
+    }
+
+    public void list() {
+    }
 }

@@ -1,14 +1,20 @@
 public class AddCommand implements Command {
-    private final Todo receiver;
-    private final Storage record;
+    private final Task task;
+    private final TaskList taskList;
 
-    public AddCommand(Todo receiver, Storage record) {
-        this.receiver = receiver;
-        this.record = record;
+    public AddCommand(Task task, TaskList taskList) {
+        this.task = task;
+        this.taskList = taskList;
     }
 
     @Override
     public void execute() {
-        receiver.add(record);
+        taskList.add(task);
+    }
+
+    @Override
+    public void undo() {
+        taskList.remove(task);
     }
 }
+
