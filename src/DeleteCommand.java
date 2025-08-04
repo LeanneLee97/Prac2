@@ -1,7 +1,7 @@
 public class DeleteCommand implements Command {
     private final Receiver taskList;
     private final int index;
-    private Payload removedTask;
+    private String removedTask;
 
     public DeleteCommand(Receiver taskList, Payload payload) {
         this.taskList = taskList;
@@ -11,7 +11,7 @@ public class DeleteCommand implements Command {
     @Override
     public void execute() {
         removedTask = Receiver.getTask(index);
-        taskList.deleteTask(index, removedTask);
+        taskList.deleteTask(index);
     }
 
     @Override

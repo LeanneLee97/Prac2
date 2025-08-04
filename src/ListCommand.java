@@ -7,7 +7,7 @@ public class ListCommand implements Command {
 
     @Override
     public void execute() {
-        taskList.getAllTasks();
+        taskList.listTasks();
     }
 
     @Override
