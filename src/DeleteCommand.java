@@ -3,15 +3,18 @@ public class DeleteCommand implements Command {
     private final int index;
     private String removedTask;
 
-    public DeleteCommand(Receiver taskList, Payload payload) {
+    public DeleteCommand(Receiver taskList, String payload) {
         this.taskList = taskList;
-        this.index = Integer.parseInt(payload.getIndex());
+        try{
+            this.index = Integer.parseInt(payload);
+        } catch(NumberFormatException e){
+            throw new IllegalArgumentException("Invalid index");
+        }
     }
 
     @Override
     public void execute() {
-        removedTask = Receiver.getTask(index);
-        taskList.deleteTask(index);
+        removedTask = taskList.deleteTask(index);
     }
 
     @Override

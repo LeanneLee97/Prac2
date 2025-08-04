@@ -1,18 +1,13 @@
-import java.util.ArrayList;
-
 public class Invoker {
-    /**
-     * Set commands for execution (replaces the queue).
-     */
-    private ArrayList<Command> commands = new ArrayList<>();
+    private Command command;
 
-    public void setCommandsForExecution(ArrayList<Command> list) {
-        this.commands = list;
+    public void setCommandsForExecution(Command command) {
+        this.command = command;
     }
 
     public void executeCommand() {
-        for (Command c : commands) {
-            c.execute();
+        if(command != null) {
+            command.execute();
         }
     }
 }

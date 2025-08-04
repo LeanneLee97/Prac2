@@ -5,27 +5,27 @@ import java.util.ArrayList;
  * Acts on the Payload objects as part of the Command Design Pattern.
  */
 public class Receiver {
-    private static final ArrayList<String> taskList = new ArrayList<>();
+    private final ArrayList<String> taskList = new ArrayList<>();
 
     /**
      * Adds a new task to the task list.
      */
-    public static void addTask(String payload) {
-        taskList.add(payload);
+    public void addTask(String task) {
+        taskList.add(task);
     }
 
     /**
      * Removes a task by object.
      */
-    public void removeTask(Payload payload) {
-        taskList.remove(payload);
+    public void removeTask(String task) {
+        taskList.remove(task);
     }
 
     /**
      * Removes a task by index and returns the removed Payload.
      */
-    public void deleteTask(int index) {
-        taskList.remove(index);
+    public String deleteTask(int index) {
+        return taskList.remove(index);
     }
 
     /**
@@ -38,7 +38,7 @@ public class Receiver {
     /**
      * Returns the task at the given index.
      */
-    public static String getTask(int index) {
+    public String getTask(int index) {
         return taskList.get(index);
     }
 
@@ -65,7 +65,15 @@ public class Receiver {
     /**
      * Returns all tasks (used for file storage).
      */
-    public static ArrayList getAllTasks() {
-        return new ArrayList(taskList);
+    public ArrayList <String> getAllTasks() {
+        return new ArrayList<>(taskList);
+    }
+
+    public boolean validateTask(String task) {
+        if (taskList.contains(task)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
