@@ -1,5 +1,8 @@
 import java.util.Stack;
 
+/**
+ * For testing purposes only
+ */
 public class Client {
     public static void main(String[] args) {
         Stack<Command> history = new Stack<>();
@@ -53,7 +56,7 @@ public class Client {
             }
         }
 
-        // ✅ Save to dataStore.txt
-        receiver.saveToFile();
+        // Save to dataStore.txt
+        receiver.storeToFile();
     }
 }

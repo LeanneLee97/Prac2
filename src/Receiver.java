@@ -27,8 +27,9 @@ public class Receiver {
         return new ArrayList<>();
     }
 
-    public ArrayList<String> saveToFile() {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH))){
+    public void storeToFile() {
+        File file = new File(FILE_PATH);
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))){
             for (String task : taskList) {
                 writer.write(task);
                 writer.newLine();
@@ -37,7 +38,6 @@ public class Receiver {
         } catch(IOException e){
             System.out.println("Error while writing to file" + e.getMessage());
         }
-        return new ArrayList<>();
     }
 
     public void addTask(String task) {
