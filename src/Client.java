@@ -43,10 +43,6 @@ public class Client {
                 invoker.setCommandsForExecution(new Command[] { command });
                 invoker.executeCommand(history);
 
-                if (!(command instanceof UndoCommand || command instanceof ListCommand)) {
-                    history.push(command);
-                }
-
             } catch (Exception e) {
                 System.out.println("Error: " + e.getMessage());
             }
