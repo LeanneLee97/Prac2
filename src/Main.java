@@ -7,29 +7,17 @@ public class Main {
         Receiver receiver = new Receiver();
         Invoker invoker = new Invoker();
 
-        // ✅ Load from dataStore.txt
-        ArrayList<String> loadedTasks = Storage.loadFromFile();
-        for (String task : loadedTasks) {
-            receiver.addTask(task);
-        }
-
-        // ✅ Hardcoded commands
         String[] inputs = {
-                "add John Doe john@example.com",
-                "add Alice Smith alice@example.com",
+                "add John Doe john@gmail.com",
+                "add Alice Smith alice@gmail.com",
                 "list",
-                "update 0 Johnny Doe johnny@example.com",
-                "list",
-                "delete 1",
-                "list",
-                "undo",
-                "list",
-                "undo",
+                "add Tommy Lee tommy@gmail.com",
+                "update 0 Johnny Doe johnny@gmail.com",
                 "list"
         };
 
         for (String input : inputs) {
-            System.out.println("\n> " + input);
+            System.out.println(input);
             Command command = null;
 
             try {
@@ -51,7 +39,7 @@ public class Main {
                     continue;
                 }
 
-                invoker.setCommand(command);
+                invoker.setCommandsForExecution(command);
                 invoker.executeCommand();
 
                 if (!(command instanceof UndoCommand || command instanceof ListCommand)) {
@@ -64,7 +52,6 @@ public class Main {
         }
 
         // ✅ Save to dataStore.txt
-        Storage.saveToFile(receiver.getAllTasks());
-        System.out.println("\nTasks saved to dataStore.txt");
+        receiver.saveToFile();
     }
 }

@@ -19,6 +19,6 @@ public class UndoCommand implements Command {
 
     @Override
     public void undo() {
-        // Undoing an undo is typically unsupported
+        // Not Applicable
     }
 }

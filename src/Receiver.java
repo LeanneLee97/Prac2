@@ -1,12 +1,18 @@
 import java.util.ArrayList;
+import java.io.*;
 
 /**
  * Receiver class that performs business logic on tasks.
  * Acts on the Payload objects as part of the Command Design Pattern.
  */
 public class Receiver {
-    private final ArrayList<String> taskList = new ArrayList<>();
+    private ArrayList<String> taskList = new ArrayList<>();
+    private static final String FILE_PATH = "src/dataStore.txt";
 
+    public Receiver() {
+        this.taskList = loadFromFile();
+
+    }
     /**
      * Adds a new task to the task list.
      */
@@ -67,6 +73,35 @@ public class Receiver {
      */
     public ArrayList <String> getAllTasks() {
         return new ArrayList<>(taskList);
+    }
+
+    public ArrayList<String> loadFromFile() {
+        File file = new File(FILE_PATH);
+        if (!file.exists()) {
+            System.out.println("dataStore.txt doesn't exist.");
+        }
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))){
+            String line;
+            while ((line = reader.readLine()) != null){
+                taskList.add(line);
+            }
+            System.out.println("Loaded " + taskList.size() + " tasks.");
+        } catch (IOException e){
+            System.out.println("Error reading file." + e.getMessage());
+        }
+        return new  ArrayList<>();
+    }
+
+    public void saveToFile() {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH))){
+            for (String task : taskList) {
+                writer.write(task);
+                writer.newLine();
+            }
+            System.out.println("Saved " + taskList.size() + " tasks.");
+        } catch (IOException e){
+            System.out.println("Error writing to file." + e.getMessage());
+        }
     }
 
     public boolean validateTask(String task) {
