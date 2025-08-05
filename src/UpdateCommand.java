@@ -20,7 +20,7 @@ public class UpdateCommand implements Command {
                     "data fields");
         }
         try{
-            index = Integer.parseInt(splitPayload[0]);
+            index = Integer.parseInt(splitPayload[0]) - 1;
         }catch(NumberFormatException e){
             throw new IllegalArgumentException("Invalid index");
         }

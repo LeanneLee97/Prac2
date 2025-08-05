@@ -21,4 +21,9 @@ public class UndoCommand implements Command {
     public void undo() {
         // Not Applicable
     }
+
+    @Override
+    public boolean isStackable() {
+        return false;
+    }
 }

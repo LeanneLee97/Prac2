@@ -7,13 +7,18 @@ public class Client {
         Invoker invoker = new Invoker();
 
         String[] inputs = {
-                "add John Doe john@gmail.com",
-                "add Alice Smith alice@gmail.com",
+                "add First_name Last_name Email",
+                "add John Doe simple@example.com",
+                "add Hanna Moon tetter.tots@potatoesarelife.com",
+                "add Ah Boon green-tea@teaforlife.com",
                 "list",
-                "add Tommy Lee tommy@gmail.com",
-                "update 0 Johnny Doe johnny@gmail.com",
+                "update 3 Adam Moon tetter.tots@potatoesarelife.com",
                 "list",
-                "delete 2",
+                "update 1 blue bell ice-cream@alaskaFields.org",
+                "list",
+                "delete 1",
+                "list",
+                "undo",
                 "list"
         };
 
