@@ -41,7 +41,7 @@ public class Main {
                     continue;
                 }
 
-                invoker.setCommandsForExecution(command);
+                invoker.setCommandsForExecution(command[]);
                 invoker.executeCommand();
 
                 if (!(command instanceof UndoCommand || command instanceof ListCommand)) {
