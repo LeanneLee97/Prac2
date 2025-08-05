@@ -1,7 +1,6 @@
-import java.util.ArrayList;
 import java.util.Stack;
 
-public class Main {
+public class Client {
     public static void main(String[] args) {
         Stack<Command> history = new Stack<>();
         Receiver receiver = new Receiver();
@@ -41,8 +40,8 @@ public class Main {
                     continue;
                 }
 
-                invoker.setCommandsForExecution(command[]);
-                invoker.executeCommand();
+                invoker.setCommandsForExecution(new Command[] { command });
+                invoker.executeCommand(history);
 
                 if (!(command instanceof UndoCommand || command instanceof ListCommand)) {
                     history.push(command);
