@@ -1,22 +1,41 @@
 //package com.yourdomain.employeemgr;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.*;
 
 public class Receiver {
     private final List<Employee> employees = new ArrayList<>();
-    public void loadFromCsv(Path filePath) throws IOException {
-        List<String> lines = Files.readAllLines(filePath);
-        for (String line : lines) {
-            String[] data = line.split(",");
-            if (data.length >= 3) {
-                Employee employee = new Employee(data[0], data[1], data[2]);
-                employees.add(employee);
+    private List<String> data;
+    public void storeToFile(Path path) throws IOException {
+        try (BufferedWriter writer = Files.newBufferedWriter(path)) {
+            for (Employee e : employees) {
+                writer.write(e.toString());
+                writer.newLine();
             }
         }
     }
+
+    public void loadFromFile(Path path) throws IOException {
+        employees.clear();
+        try (BufferedReader reader = Files.newBufferedReader(path)) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                try {
+                    Employee e = Employee.fromString(line);
+                    employees.add(e);
+                } catch (IllegalArgumentException ex) {
+                    System.err.println("Skipping invalid line: " + line);
+                }
+            }
+        }
+    }
+
     public void add(Employee e) {
         employees.add(e);
     }
@@ -37,15 +56,19 @@ public class Receiver {
             return null;
         }
     }
-
+    public void remove(Employee employee) {
+        employees.remove(employee);
+    }
     public void listAll() {
-        for (int i = 0; i < employees.size(); i++) {
-            Employee e = employees.get(i);
-            System.out.printf("%d: %s, %s, %s%n", i + 1, e.getData1(), e.getData2(), e.getData3());
+        System.out.println("Employee list:");
+        for (Employee e : employees) {
+            System.out.println(e);
         }
     }
 
     public List<Employee> getEmployees() {
         return new ArrayList<>(employees);
     }
+
+
 }

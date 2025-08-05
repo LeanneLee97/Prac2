@@ -20,7 +20,7 @@ public class Client {
 
         if (Files.exists(statePath)) {
             try {
-                receiver.loadFromCsv(statePath);
+                receiver.loadFromFile(statePath);
                 System.out.println("Loaded stored employees.");
             } catch (IOException ex) {
                 System.err.println("Error loading state: " + ex.getMessage());
@@ -30,7 +30,7 @@ public class Client {
 
         TaskList registry = new TaskList(receiver);
         Invoker invoker = new Invoker();
-        Deque<Command> history = new ArrayDeque<>();
+        Stack<Command> history = new Stack<>(); // Changed from Deque to Stack
 
         try (BufferedReader reader = Files.newBufferedReader(commandsPath)) {
             List<Command> commands = new ArrayList<>();
@@ -51,7 +51,7 @@ public class Client {
         }
 
         try {
-            receiver.saveToCsv(statePath);
+            receiver.storeToFile(statePath);
             System.out.println("State saved to file.");
         } catch (IOException ex) {
             System.err.println("Error saving state: " + ex.getMessage());

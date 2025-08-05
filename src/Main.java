@@ -7,6 +7,16 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) throws IOException {
         Receiver receiver = new Receiver();
+
+        // Load employees from dataStore.txt
+        Path dataStorePath = Paths.get("dataStore.txt");
+        if (Files.exists(dataStorePath)) {
+            receiver.loadFromFile(dataStorePath);
+            System.out.println("Loaded dataStore.txt employees.");
+        } else {
+            System.out.println("dataStore.txt not found, starting with empty list.");
+        }
+
         TaskList taskList = new TaskList(receiver);
         Invoker invoker = new Invoker();
         Stack<Command> history = new Stack<>();
