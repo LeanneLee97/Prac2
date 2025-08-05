@@ -1,13 +1,19 @@
+import java.util.Stack;
+
 public class Invoker {
-    private Command command;
+    private Command[] commands;
 
-    public void setCommandsForExecution(Command command) {
-        this.command = command;
+    public void setCommandsForExecution(Command[] commands) {
+        this.commands = commands;
     }
-
-    public void executeCommand() {
-        if(command != null) {
-            command.execute();
+    public void executeCommand(Stack <Command> history) {
+        if (commands != null){
+            for (Command commands : commands){
+                commands.execute();
+                if (commands.isStackable()){
+                    history.push(commands);
+                }
+            }
         }
     }
 }

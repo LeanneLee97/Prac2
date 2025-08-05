@@ -28,14 +28,19 @@ public class UpdateCommand implements Command {
         data2 = splitPayload[2];
         data3 = splitPayload[3];
 
-        taskList.validateTask(data3);
+        //taskList.validateTask(data3);
         previousTask = taskList.getTask(index);
         String updatedTask = String.join(" ", data1, data2, data3);
-        taskList.changeTask(index, updatedTask);
+        taskList.updateTask(index, updatedTask);
     }
 
     @Override
     public void undo() {
-        taskList.changeTask(index, previousTask);
+        taskList.updateTask(index, previousTask);
+    }
+
+    @Override
+    public boolean isStackable() {
+        return true;
     }
 }

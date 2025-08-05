@@ -13,6 +13,8 @@ public class Main {
                 "list",
                 "add Tommy Lee tommy@gmail.com",
                 "update 0 Johnny Doe johnny@gmail.com",
+                "list",
+                "delete 2",
                 "list"
         };
 

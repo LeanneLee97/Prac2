@@ -22,7 +22,7 @@ public class AddCommand implements Command {
         data2 = splitPayload[1];
         data3 = splitPayload[2];
 
-        taskList.validateTask(data3);
+        //taskList.validateTask(data3);
 
         String task = String.join(" ", data1, data2, data3);
         taskList.addTask(task);
@@ -32,6 +32,11 @@ public class AddCommand implements Command {
     public void undo() {
         String task = String.join(" ", data1, data2, data3);
         taskList.removeTask(task);
+    }
+
+    @Override
+    public boolean isStackable() {
+        return true;
     }
 }
 

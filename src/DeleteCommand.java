@@ -22,7 +22,13 @@ public class DeleteCommand implements Command {
     @Override
     public void undo() {
         if (removedTask != null) {
-            taskList.readdTask(index, removedTask);
+            taskList.reAddTask(index, removedTask);
         }
     }
+
+    @Override
+    public boolean isStackable() {
+        return true;
+    }
+
 }
