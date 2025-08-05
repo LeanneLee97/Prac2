@@ -1,23 +1,42 @@
-public class UpdateCommand implements Command {
-    private final TaskList taskList;
-    private final int index;
-    private final Task updatedTask;
-    private Task previousTask;
+//package com.yourdomain.employeemgr;
 
-    public UpdateCommand(TaskList taskList, int index, Task updatedTask) {
-        this.taskList = taskList;
+import java.util.List;
+
+public class UpdateCommand implements Command {
+    private final Receiver receiver;
+    private final int index;
+    private final Employee newEmployee;
+    private Employee previousEmployee;
+
+    public UpdateCommand(Receiver receiver, int index, Employee newEmployee) {
+        this.receiver = receiver;
         this.index = index;
-        this.updatedTask = updatedTask;
+        this.newEmployee = newEmployee;
     }
 
     @Override
-    public void execute() {
-        //previousTask = taskList.get(index);
-        //taskList.update(index, updatedTask);
+    public boolean execute() {
+        if (index < 1 || index > receiver.getEmployees().size()) {
+            System.out.println("Invalid index.");
+            return false;
+        }
+
+        previousEmployee = receiver.getEmployees().get(index - 1);
+        receiver.update(index, newEmployee);
+        return true;
     }
 
     @Override
     public void undo() {
-        taskList.update(index, previousTask);
+        if (previousEmployee != null) {
+            receiver.update(index, previousEmployee);
+        } else {
+            System.out.println("No previous state to revert to.");
+        }
+    }
+
+    @Override
+    public boolean isUndoable() {
+        return true;
     }
 }

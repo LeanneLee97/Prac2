@@ -1,17 +1,23 @@
 public class ListCommand implements Command {
-    private final TaskList taskList;
+    private final Receiver receiver;
 
-    public ListCommand(TaskList taskList) {
-        this.taskList = taskList;
+    public ListCommand(Receiver receiver) {
+        this.receiver = receiver;
     }
 
     @Override
-    public void execute() {
-        taskList.list();
+    public boolean execute() {
+        receiver.listAll();
+        return true;
     }
 
     @Override
     public void undo() {
-        // Not applicable
+        // Listing doesn't modify state, so nothing to undo
+    }
+
+    @Override
+    public boolean isUndoable() {
+        return false;
     }
 }

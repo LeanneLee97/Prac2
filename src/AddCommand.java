@@ -1,20 +1,29 @@
 public class AddCommand implements Command {
-    private final Task task;
-    private final TaskList taskList;
 
-    public AddCommand(Task task, TaskList taskList) {
-        this.task = task;
-        this.taskList = taskList;
+    private Receiver receiver;
+    private String firstName;
+    private String lastName;
+    private String position;
+
+    public AddCommand(Receiver receiver, String firstName, String lastName, String position) {
+        this.receiver = receiver;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.position = position;
     }
 
     @Override
-    public void execute() {
-        taskList.add(task);
+    public boolean execute() {
+        Employee newEmployee = new Employee(firstName, lastName, position);
+        receiver.add(newEmployee);
+        System.out.println("Added: " + newEmployee);
+        return true;
     }
 
+
     @Override
-    public void undo() {
-        taskList.remove(task);
+    public boolean isUndoable() {
+        return false;
     }
 }
 

@@ -1,45 +1,41 @@
 //package com.yourdomain.employeemgr;
 
-import java.nio.file.*;
-import java.io.*;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.*;
 
 public class Receiver {
-    private List<Employee> employees = new ArrayList<>();
-
-    public void loadFromCsv(Path path) throws IOException {
-        try (BufferedReader reader = Files.newBufferedReader(path)) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                String[] cols = line.split(",");
-                employees.add(new Employee(cols[0], cols[1], cols[2]));
+    private final List<Employee> employees = new ArrayList<>();
+    public void loadFromCsv(Path filePath) throws IOException {
+        List<String> lines = Files.readAllLines(filePath);
+        for (String line : lines) {
+            String[] data = line.split(",");
+            if (data.length >= 3) {
+                Employee employee = new Employee(data[0], data[1], data[2]);
+                employees.add(employee);
             }
         }
     }
-
-    public void saveToCsv(Path path) throws IOException {
-        try (BufferedWriter writer = Files.newBufferedWriter(path)) {
-            for (Employee e : employees) {
-                writer.write(String.join(",", e.getData1(), e.getData2(), e.getData3()));
-                writer.newLine();
-            }
-        }
-    }
-
     public void add(Employee e) {
         employees.add(e);
     }
 
     public void update(int index, Employee newEmp) {
-        employees.set(index - 1, newEmp);
+        if (index >= 1 && index <= employees.size()) {
+            employees.set(index - 1, newEmp);
+        } else {
+            System.out.println("Invalid index.");
+        }
     }
 
     public Employee delete(int index) {
-        return employees.remove(index - 1);
-    }
-
-    public void delete(Employee e) {
-        employees.remove(e);
+        if (index >= 1 && index <= employees.size()) {
+            return employees.remove(index - 1);
+        } else {
+            System.out.println("Invalid index.");
+            return null;
+        }
     }
 
     public void listAll() {
@@ -47,5 +43,9 @@ public class Receiver {
             Employee e = employees.get(i);
             System.out.printf("%d: %s, %s, %s%n", i + 1, e.getData1(), e.getData2(), e.getData3());
         }
+    }
+
+    public List<Employee> getEmployees() {
+        return new ArrayList<>(employees);
     }
 }

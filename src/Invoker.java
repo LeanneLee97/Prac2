@@ -1,5 +1,6 @@
 // i added the cmdToExecute field
 import java.util.Stack;
+//package com.yourdomain.employeemgr;
 
 public class Invoker {
     private Command[] cmdToExecute;
@@ -10,11 +11,9 @@ public class Invoker {
 
     public void executeCommand(Stack<Command> history) {
         if (cmdToExecute != null) {
-            for (Command command : cmdToExecute) {
-                if (command.execute()) {
-                    if (command.isUndoable()) {
-                        history.push(command);
-                    }
+            for (Command cmd : cmdToExecute) {
+                if (cmd.execute() && cmd.isUndoable()) {
+                    history.push(cmd);
                 }
             }
         }

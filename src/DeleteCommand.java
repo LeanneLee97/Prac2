@@ -1,23 +1,30 @@
 public class DeleteCommand implements Command {
-    private final TaskList taskList;
-    private final int index;
-    private Task removedTask;
+    private Receiver receiver;
+    private int index;
+    private Employee deletedEmployee;
 
-    public DeleteCommand(TaskList taskList, int index) {
-        this.taskList = taskList;
+    public DeleteCommand(Receiver receiver, int index) {
+        this.receiver = receiver;
         this.index = index;
     }
 
     @Override
-    public void execute() {
-        //removedTask = taskList.get(index);
-        //taskList.delete(index);
+    public boolean execute() {
+        deletedEmployee = receiver.delete(index);
+        System.out.println("Deleted: " + deletedEmployee);
+        return deletedEmployee != null;
     }
 
     @Override
     public void undo() {
-        if (removedTask != null) {
-            taskList.insert(index, removedTask);
+        if (deletedEmployee != null) {
+            receiver.add(deletedEmployee);
+            System.out.println("Undone delete: " + deletedEmployee);
         }
+    }
+
+    @Override
+    public boolean isUndoable() {
+        return deletedEmployee != null;
     }
 }

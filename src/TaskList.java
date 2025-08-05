@@ -1,67 +1,39 @@
-//package newDuke.main;
-//import newDuke.DukeTasks.Task;
-import java.util.ArrayList;
+//package com.yourdomain.employeemgr;
+
+import java.util.Optional;
 
 public class TaskList {
 
-    ArrayList<Task> list;
+    private final Receiver receiver;
 
-    public TaskList() {
-        list = new ArrayList<>();
+    public TaskList(Receiver receiver) {
+        this.receiver = receiver;
     }
 
-    public TaskList(ArrayList<Task> list) {
-        this.list = list;
-    }
+    public Optional<Command> parse(String line) {
+        String[] parts = line.split(",");
+        if (parts.length < 2) {
+            return Optional.empty();
+        }
 
-    public Task getTask(int i) {
-        return this.list.get(i);
-    }
+        String commandType = parts[0].trim();
+        String[] params = new String[parts.length - 1];
+        System.arraycopy(parts, 1, params, 0, params.length);
 
-    public void updateTaskList(ArrayList<Task> list) {
-        this.list = list;
-    }
+        switch (commandType.toLowerCase()) {
+            case "add":
+                return Optional.of(new AddCommand(receiver, params[0], params[1], params[2]));
+//            case "delete":
+//                return Optional.of(new DeleteCommand(receiver, Integer.parseInt(params[0])));
+//            case "update":
+//                return Optional.of(new UpdateCommand(receiver, Integer.parseInt(params[0]), params[1], params[2], params[3]));
+//            case "list":
+//                return Optional.of(new ListCommand(receiver));
+//            case "undo":
+//                return Optional.of(new UndoCommand(receiver));
+            default:
+                return Optional.empty();
+        }
 
-    public ArrayList<Task> getTaskList() {
-        return this.list;
-    }
-
-    public void addTaskList(Task task) {
-        this.list.add(task);
-    }
-
-
-    public int getSize() {
-        return list.size();
-    }
-
-    public int indexOf(Task t) {
-        return list.indexOf(t);
-    }
-
-    public void changeTask(int index, Task t) {
-        list.set(index, t);
-    }
-
-    public void add(Task task) {
-    }
-
-    public void remove(Task task) {
-    }
-
-//    public Task get(int index) {
-//        return index; // to be edited
-//    }
-
-    public void update(int index, Task updatedTask) {
-    }
-
-    public void delete(int index) {
-    }
-
-    public void insert(int index, Task removedTask) {
-    }
-
-    public void list() {
     }
 }
