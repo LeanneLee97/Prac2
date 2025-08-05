@@ -10,8 +10,8 @@ public class DeleteCommand implements Command {
 
     @Override
     public void execute() {
-        removedTask = taskList.get(index);
-        taskList.delete(index);
+        //removedTask = taskList.get(index);
+        //taskList.delete(index);
     }
 
     @Override

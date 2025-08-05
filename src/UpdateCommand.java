@@ -12,8 +12,8 @@ public class UpdateCommand implements Command {
 
     @Override
     public void execute() {
-        previousTask = taskList.get(index);
-        taskList.update(index, updatedTask);
+        //previousTask = taskList.get(index);
+        //taskList.update(index, updatedTask);
     }
 
     @Override

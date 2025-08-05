@@ -1,5 +1,6 @@
-public interface Command {
-    void execute();
-    void undo();
 
+public interface Command {
+    boolean execute();
+    void undo();
+    boolean isUndoable();
 }

@@ -1,18 +1,22 @@
-import java.util.ArrayList;
+// i added the cmdToExecute field
+import java.util.Stack;
 
 public class Invoker {
-    /**
-     * Set commands for execution (replaces the queue).
-     */
-    private ArrayList<Command> commands = new ArrayList<>();
+    private Command[] cmdToExecute;
 
-    public void setCommandsForExecution(ArrayList<Command> list) {
-        this.commands = list;
+    public void setCommandsForExecution(Command[] commands) {
+        this.cmdToExecute = commands;
     }
 
-    public void executeCommand() {
-        for (Command c : commands) {
-            c.execute();
+    public void executeCommand(Stack<Command> history) {
+        if (cmdToExecute != null) {
+            for (Command command : cmdToExecute) {
+                if (command.execute()) {
+                    if (command.isUndoable()) {
+                        history.push(command);
+                    }
+                }
+            }
         }
     }
 }
