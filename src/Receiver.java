@@ -1,4 +1,7 @@
-import java.io.*;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 
 public class Receiver {
@@ -10,33 +13,22 @@ public class Receiver {
     }
 
     public ArrayList<String> loadFromFile() {
-        File file = new File(FILE_PATH);
-        if (!file.exists()) {
-            System.out.println("File does not exist");
-        }
-
-        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                taskList.add(line);
-            }
-            //System.out.println("Loaded " + taskList.size() + " tasks");
+        Path path = Path.of(FILE_PATH);
+        try {
+            Files.readAllLines(path);
+            return new ArrayList<>();
         } catch (IOException e) {
-            System.out.println("Error while reading file" + e.getMessage());
+            e.printStackTrace();
+            return new ArrayList<>();
         }
-        return new ArrayList<>();
     }
 
     public void storeToFile() {
-        File file = new File(FILE_PATH);
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))){
-            for (String task : taskList) {
-                writer.write(task);
-                writer.newLine();
-            }
-            //System.out.println("Saved " + taskList.size() + " tasks");
-        } catch(IOException e){
-            System.out.println("Error while writing to file" + e.getMessage());
+        Path path = Path.of(FILE_PATH);
+        try {
+            Files.write(path, taskList, StandardCharsets.UTF_8);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -67,5 +59,4 @@ public class Receiver {
     public ArrayList<String> getAllTasks() {
         return new ArrayList<>(taskList); // returns a copy
     }
-
 }
