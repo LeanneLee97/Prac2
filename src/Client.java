@@ -52,7 +52,7 @@ public static void main(String[] args) throws CustomException {
         } else if (input.equalsIgnoreCase("list")) {
             command = new ListCommand(receiver);
         } else if (input.equalsIgnoreCase("undo")) {
-            command = new UndoCommand(history);
+            command = new UndoCommand(receiver, history);
         } else {
             System.out.println("Unknown command.");
             continue;
