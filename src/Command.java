@@ -3,4 +3,3 @@ public interface Command {
     void undo() throws CustomException;
     boolean isStackable();
 }
-

@@ -22,7 +22,7 @@ public class AddCommand implements Command {
         data2 = splitPayload[1];
         data3 = splitPayload[2];
 
-        if (!isValidEmail(data3){
+        if (!EmailValidator.isValidEmail(data3)) {
             throw new CustomException("Invalid email");
         }
 
@@ -43,4 +43,3 @@ public class AddCommand implements Command {
         return true;
     }
 }
-

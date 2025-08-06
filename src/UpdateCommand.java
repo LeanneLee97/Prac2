@@ -41,7 +41,7 @@ public class UpdateCommand implements Command {
             updatedTask = String.join(" ", data1, data2, oldData3);
             if (splitPayload.length > 3) {
                 data3 = splitPayload[3];
-                if (!isValidEmail(data3){
+                if (!EmailValidator.isValidEmail(data3)) {
                     throw new CustomException("Invalid email");
                 }
                 updatedTask = String.join(" ", data1, data2, data3);
