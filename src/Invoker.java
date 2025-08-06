@@ -6,12 +6,17 @@ public class Invoker {
     public void setCommandsForExecution(Command[] commands) {
         this.cmdToExecute = commands;
     }
-    public void executeCommand(Stack <Command> history) {
-        if (cmdToExecute != null){
-            for (Command commands : cmdToExecute){
-                commands.execute();
-                if (commands.isStackable()){
-                    history.push(commands);
+
+    public void executeCommand(Stack<Command> history) {
+        if (cmdToExecute != null) {
+            for (Command command : cmdToExecute) {
+                try {
+                    command.execute();
+                    if (command.isStackable()) {
+                        history.push(command);
+                    }
+                } catch (CustomException e) {
+                    System.out.println("Command failed: " + e.getMessage());
                 }
             }
         }

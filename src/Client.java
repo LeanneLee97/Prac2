@@ -4,10 +4,12 @@ import java.util.Stack;
  * For testing purposes only
  */
 public class Client {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws CustomException {
         Stack<Command> history = new Stack<>();
         Receiver receiver = new Receiver();
         Invoker invoker = new Invoker();
+
+
 
         String[] inputs = {
                 "add First_name Last_name Email",
@@ -41,31 +43,27 @@ public class Client {
             System.out.println(input);
             Command command = null;
 
-            try {
-                if (input.startsWith("add ")) {
-                    String payload = input.substring(4).trim();
-                    command = new AddCommand(receiver, payload);
-                } else if (input.startsWith("update ")) {
-                    String payload = input.substring(7).trim();
-                    command = new UpdateCommand(receiver, payload);
-                } else if (input.startsWith("delete ")) {
-                    String payload = input.substring(7).trim();
-                    command = new DeleteCommand(receiver, payload);
-                } else if (input.equalsIgnoreCase("list")) {
-                    command = new ListCommand(receiver);
-                } else if (input.equalsIgnoreCase("undo")) {
-                    command = new UndoCommand(history);
-                } else {
-                    System.out.println("Unknown command.");
-                    continue;
-                }
-
-                invoker.setCommandsForExecution(new Command[] { command });
-                invoker.executeCommand(history);
-
-            } catch (Exception e) {
-                System.out.println("Error: " + e.getMessage());
+            if (input.startsWith("add ")) {
+                String payload = input.substring(4).trim();
+                command = new AddCommand(receiver, payload);
+            } else if (input.startsWith("update ")) {
+                String payload = input.substring(7).trim();
+                command = new UpdateCommand(receiver, payload);
+            } else if (input.startsWith("delete ")) {
+                String payload = input.substring(7).trim();
+                command = new DeleteCommand(receiver, payload);
+            } else if (input.equalsIgnoreCase("list")) {
+                command = new ListCommand(receiver);
+            } else if (input.equalsIgnoreCase("undo")) {
+                command = new UndoCommand(history);
+            } else {
+                System.out.println("Unknown command.");
+                continue;
             }
+
+            invoker.setCommandsForExecution(new Command[] { command });
+            invoker.executeCommand(history);
+
         }
 
         // Save to dataStore.txt

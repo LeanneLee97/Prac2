@@ -8,13 +8,13 @@ public class UndoCommand implements Command {
     }
 
     @Override
-    public void execute() {
-        if (!history.isEmpty()) {
-            Command last = history.pop();
-            last.undo();
-        } else {
-            System.out.println("Nothing to undo.");
+    public void execute() throws CustomException {
+        if (history.isEmpty()) {
+            throw new CustomException("Nothing to Undo");
         }
+        Command last = history.pop();
+        last.undo();
+
     }
 
     @Override

@@ -16,16 +16,16 @@ public class UpdateCommand implements Command {
     }
 
     @Override
-    public void execute() {
+    public void execute() throws CustomException {
         String[] splitPayload = payload.split(" ");
         if(splitPayload.length <2 || splitPayload.length > 4){
-            throw new IllegalArgumentException("Invalid payload: Expecting " +
+            throw new CustomException("Invalid payload: Expecting " +
                     "2 to 4 data fields");
         }
-        try{
-            index = Integer.parseInt(splitPayload[0]) - 1;
-        }catch(NumberFormatException e){
-            throw new IllegalArgumentException("Invalid index");
+        index = Integer.parseInt(splitPayload[0]) - 1;
+
+        if (index == 0){
+            throw new CustomException("Invalid payload: Nothing to update");
         }
         //taskList.validateTask(data3);
         previousTask = taskList.getTask(index);

@@ -11,10 +11,10 @@ public class AddCommand implements Command {
     }
 
     @Override
-    public void execute() {
+    public void execute() throws CustomException{
         String[] splitPayload = payload.split(" ");
         if (splitPayload.length != 3) {
-            throw new IllegalArgumentException("Invalid payload: Expecting 3 " +
+            throw new CustomException("Invalid payload: Expecting 3 " +
                     "data fields");
         }
 
