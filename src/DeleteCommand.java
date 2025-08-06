@@ -1,30 +1,34 @@
 public class DeleteCommand implements Command {
-    private Receiver receiver;
+    private final Receiver taskList;
     private int index;
-    private Employee deletedEmployee;
+    private final String payload;
+    private String removedTask;
 
-    public DeleteCommand(Receiver receiver, int index) {
-        this.receiver = receiver;
-        this.index = index;
+    public DeleteCommand(Receiver taskList, String payload) {
+        this.taskList = taskList;
+        this.payload = payload;
     }
 
     @Override
-    public boolean execute() {
-        deletedEmployee = receiver.delete(index);
-        System.out.println("Deleted: " + deletedEmployee);
-        return deletedEmployee != null;
+    public void execute() {
+        try{
+            this.index = Integer.parseInt(payload);
+        } catch(NumberFormatException e){
+            throw new IllegalArgumentException("Invalid index");
+        }
+        removedTask = taskList.deleteTask(index);
     }
 
     @Override
     public void undo() {
-        if (deletedEmployee != null) {
-            receiver.add(deletedEmployee);
-            System.out.println("Undone delete: " + deletedEmployee);
+        if (removedTask != null) {
+            taskList.reAddTask(index, removedTask);
         }
     }
 
     @Override
-    public boolean isUndoable() {
-        return deletedEmployee != null;
+    public boolean isStackable() {
+        return true;
     }
+
 }
