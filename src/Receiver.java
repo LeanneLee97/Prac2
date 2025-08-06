@@ -68,9 +68,4 @@ public class Receiver {
         return new ArrayList<>(taskList); // returns a copy
     }
 
-
-
-
-
-
 }
