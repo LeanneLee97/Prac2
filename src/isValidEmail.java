@@ -1,4 +1,7 @@
-public static boolean isValidEmail(String email) {
+public class isValidEmail {
+    public static boolean isValidEmail(String email) {
+
+
         int atIndex = email.indexOf('@');
         if (atIndex <= 0 || atIndex == email.length() - 1) {
             return false; // must have non-empty local part and domain
@@ -6,7 +9,7 @@ public static boolean isValidEmail(String email) {
 
         String localPart = email.substring(0, atIndex);
         String domainPart = email.substring(atIndex + 1);
-        
+
         // Local Check uppercase and lowercase Latin letters A to Z and a to z digits 0 to 9
         if (!localPart.matches("^[A-Za-z0-9._-]+$")) {
             return false;
@@ -39,7 +42,7 @@ public static boolean isValidEmail(String email) {
 
         // printable characters .- (dot & dash). Note that for the printable characters, they must
         // not be present as either the first or last character and also do not appear consecutively
-        // underscore NOT ALLOWED anywhere in Domain Part 
+        // underscore NOT ALLOWED anywhere in Domain Part
         for (int i = 0; i < domainPart.length(); i++) {
             char c = domainPart.charAt(i);
 
@@ -47,7 +50,7 @@ public static boolean isValidEmail(String email) {
                 return false; // . or - at start or end
             }
 
-            // Consecutive . or - 
+            // Consecutive . or -
             if ((c == '.' || c == '-') && i > 0) {
                 char prev = domainPart.charAt(i - 1);
                 if (prev == '.' || prev == '-') {
@@ -76,3 +79,6 @@ public static boolean isValidEmail(String email) {
 
         return true;
     }
+
+}
+
