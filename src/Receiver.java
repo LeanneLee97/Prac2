@@ -52,9 +52,9 @@ public class Receiver {
         return taskList.remove(index);
     }
 
-    public void reAddTask(int index, String removedTask) {
-        taskList.add(index, removedTask);
-    }
+//    public void reAddTask(int index, String removedTask) {
+//        taskList.add(index, removedTask);
+//    }
 
     public String getTask(int index){
         return taskList.get(index);
