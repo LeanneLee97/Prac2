@@ -4,17 +4,16 @@ public class DeleteCommand implements Command {
     private final String payload;
     private String removedTask;
 
-    public DeleteCommand(Receiver taskList, String payload) {
+    public DeleteCommand(Receiver taskList, String payload) throws CustomException {
         this.taskList = taskList;
         this.payload = payload;
     }
 
     @Override
-    public void execute() {
-        try{
-            this.index = Integer.parseInt(payload);
-        } catch(NumberFormatException e){
-            throw new IllegalArgumentException("Invalid index");
+    public void execute() throws CustomException {
+        this.index = Integer.parseInt(payload);
+        if  (index == 0){
+            throw new CustomException("Invalid payload: Nothing to delete");
         }
         removedTask = taskList.deleteTask(index);
     }
