@@ -1,36 +1,42 @@
 public class AddCommand implements Command {
+    private final Receiver taskList;
+    private String data1;
+    private String data2;
+    private String data3;
+    private final String payload;
 
-    private Receiver receiver;
-    private String firstName;
-    private String lastName;
-    private String email;
-    private Employee addedEmployee; // keep track of the employee added
-
-    public AddCommand(Receiver receiver, String firstName, String lastName, String email) {
-        this.receiver = receiver;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
+    public AddCommand(Receiver taskList, String payload) {
+        this.taskList = taskList;
+        this.payload = payload;
     }
 
     @Override
-    public boolean execute() {
-        addedEmployee = new Employee(firstName, lastName, email);
-        receiver.add(addedEmployee);
-        System.out.println("Added: " + addedEmployee);
-        return true;
-    }
+    public void execute() {
+        String[] splitPayload = payload.split(" ");
+        if (splitPayload.length != 3) {
+            throw new IllegalArgumentException("Invalid payload: Expecting 3 " +
+                    "data fields");
+        }
 
-    @Override
-    public boolean isUndoable() {
-        return true;
+        data1 = splitPayload[0];
+        data2 = splitPayload[1];
+        data3 = splitPayload[2];
+
+        //taskList.validateTask(data3);
+
+        String task = String.join(" ", data1, data2, data3);
+        taskList.addTask(task);
     }
 
     @Override
     public void undo() {
-        if (addedEmployee != null) {
-            receiver.remove(addedEmployee);
-            System.out.println("Undo add: Removed " + addedEmployee);
-        }
+        String task = String.join(" ", data1, data2, data3);
+        taskList.removeTask(task);
+    }
+
+    @Override
+    public boolean isStackable() {
+        return true;
     }
 }
+
