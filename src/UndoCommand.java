@@ -2,8 +2,10 @@ import java.util.Stack;
 
 public class UndoCommand implements Command {
     private final Stack<Command> history;
+    private final Receiver taskList;
 
     public UndoCommand(Stack<Command> history) {
+        this.taskList = taskList;
         this.history = history;
     }
 
