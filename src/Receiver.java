@@ -1,74 +1,70 @@
-//package com.yourdomain.employeemgr;
-
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
-import java.util.*;
+import java.io.*;
+import java.util.ArrayList;
 
 public class Receiver {
-    private final List<Employee> employees = new ArrayList<>();
-    private List<String> data;
-    public void storeToFile(Path path) throws IOException {
-        try (BufferedWriter writer = Files.newBufferedWriter(path)) {
-            for (Employee e : employees) {
-                writer.write(e.toString());
-                writer.newLine();
-            }
-        }
+    private ArrayList<String> taskList = new ArrayList<>();
+    private static final String FILE_PATH = "src/dataStore.txt";
+
+    public Receiver() {
+        this.taskList = loadFromFile();
     }
 
-    public void loadFromFile(Path path) throws IOException {
-        employees.clear();
-        try (BufferedReader reader = Files.newBufferedReader(path)) {
+    public ArrayList<String> loadFromFile() {
+        File file = new File(FILE_PATH);
+        if (!file.exists()) {
+            System.out.println("File does not exist");
+        }
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             String line;
             while ((line = reader.readLine()) != null) {
-                try {
-                    Employee e = Employee.fromString(line);
-                    employees.add(e);
-                } catch (IllegalArgumentException ex) {
-                    System.err.println("Skipping invalid line: " + line);
-                }
+                taskList.add(line);
             }
+            //System.out.println("Loaded " + taskList.size() + " tasks");
+        } catch (IOException e) {
+            System.out.println("Error while reading file" + e.getMessage());
+        }
+        return new ArrayList<>();
+    }
+
+    public void storeToFile() {
+        File file = new File(FILE_PATH);
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))){
+            for (String task : taskList) {
+                writer.write(task);
+                writer.newLine();
+            }
+            //System.out.println("Saved " + taskList.size() + " tasks");
+        } catch(IOException e){
+            System.out.println("Error while writing to file" + e.getMessage());
         }
     }
 
-    public void add(Employee e) {
-        employees.add(e);
+    public void addTask(String task) {
+        taskList.add(task);
     }
 
-    public void update(int index, Employee newEmp) {
-        if (index >= 1 && index <= employees.size()) {
-            employees.set(index - 1, newEmp);
-        } else {
-            System.out.println("Invalid index.");
-        }
+    public void removeTask(String task) {
+        taskList.remove(task);
     }
 
-    public Employee delete(int index) {
-        if (index >= 1 && index <= employees.size()) {
-            return employees.remove(index - 1);
-        } else {
-            System.out.println("Invalid index.");
-            return null;
-        }
-    }
-    public void remove(Employee employee) {
-        employees.remove(employee);
-    }
-    public void listAll() {
-        System.out.println("Employee list:");
-        for (Employee e : employees) {
-            System.out.println(e);
-        }
+    public String deleteTask(int index){
+        return taskList.remove(index);
     }
 
-    public List<Employee> getEmployees() {
-        return new ArrayList<>(employees);
+    public void reAddTask(int index, String removedTask) {
+        taskList.add(index, removedTask);
     }
 
+    public String getTask(int index){
+        return taskList.get(index);
+    }
 
+    public void updateTask(int index, String newTask) {
+        taskList.set(index, newTask);
+    }
+
+    public ArrayList<String> getAllTasks() {
+        return new ArrayList<>(taskList); // returns a copy
+    }
 }
