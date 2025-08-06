@@ -15,7 +15,7 @@ public class Client {
                 "add Hanna Moon tetter.tots@potatoesarelife.com",
                 "add Ah Boon green-tea@teaforlife.com",
                 "list",
-                "update 3 Adam Moon tetter.tots@potatoesarelife.com",
+                "update 3 Adam",
                 "list",
                 "update 1 blue bell ice-cream@alaskaFields.org",
                 "list",
