@@ -8,11 +8,11 @@ public class ListCommand implements Command {
     }
 
     @Override
-    public void execute(){
+    public void execute() throws CustomException {
         ArrayList<String> list = taskList.getAllTasks();
 
         if (list.isEmpty()) {
-            System.out.println("No tasks available.");
+            throw new CustomException("No tasks available.");
         } else {
             for (int i = 0; i < list.size(); i++) {
                 System.out.println((i+1) + ": " + list.get(i));
