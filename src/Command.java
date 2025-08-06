@@ -1,6 +1,5 @@
-
 public interface Command {
-    boolean execute();
+    void execute();
     void undo();
-    boolean isUndoable();
+    boolean isStackable();
 }
