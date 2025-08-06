@@ -1,4 +1,4 @@
-public class isValidEmail {
+public class EmailValidator {
     public static boolean isValidEmail(String email) {
 
 
