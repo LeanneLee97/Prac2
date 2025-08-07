@@ -13,7 +13,7 @@ public class Client {
 
     String[] inputs = {
             "add First_name Last_name Email",
-            "add john Doe simple@example.com",
+            "add ^john Doe simple@example.com",
             "add hanna moon tetter.tots@potatoesarelife.com",
             "add Ah Boon Green-tea@teaforlife.com",
             "list",
@@ -25,10 +25,7 @@ public class Client {
             "list",
             "undo",
             "list",
-            "hello",
-            "delete 5"
-
-
+            "update "
     };
 
     for (String input : inputs) {
