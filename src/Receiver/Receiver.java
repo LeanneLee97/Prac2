@@ -28,7 +28,7 @@ public class Receiver {
     public void storeToFile() {
         Path path = Path.of(FILE_PATH);
         try {
-            Files.write(path, taskList, StandardCharsets.UTF_8);
+            Files.write(path, taskList);
         } catch (IOException e) {
             e.printStackTrace();
         }
