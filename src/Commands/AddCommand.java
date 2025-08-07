@@ -41,13 +41,14 @@ public class AddCommand implements Command {
 
         String task = String.join(" ", data1, data2, data3);
         taskList.addTask(task);
-        System.out.println("Employee has been added: "+task);
+        System.out.println("record has been added");
     }
 
     @Override
     public void undo() {
         String task = String.join(" ", data1, data2, data3);
         taskList.removeTask(task);
+        System.out.println("add record has been undone");
     }
 
     @Override
