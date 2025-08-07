@@ -1,7 +1,8 @@
 package Commands;
 import Receiver.Receiver;
 import Exceptions.CustomException;
-import EmailValidator.EmailValidator;
+import Validator.EmailValidator;
+import Validator.SentenceCase;
 
 public class AddCommand implements Command {
     private final Receiver taskList;
@@ -23,8 +24,8 @@ public class AddCommand implements Command {
                     "data fields");
         }
 
-        data1 = splitPayload[0];
-        data2 = splitPayload[1];
+        data1 = new SentenceCase(splitPayload[0]).sentenceCase();
+        data2 = new SentenceCase(splitPayload[1]).sentenceCase();
         data3 = splitPayload[2];
 
         if (!EmailValidator.isValidEmail(data3)) {

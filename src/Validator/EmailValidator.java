@@ -1,4 +1,4 @@
-package EmailValidator;
+package Validator;
 
 public class EmailValidator {
     public static boolean isValidEmail(String email) {

@@ -1,7 +1,8 @@
 package Commands;
 import Exceptions.CustomException;
 import Receiver.Receiver;
-import EmailValidator.EmailValidator;
+import Validator.EmailValidator;
+import Validator.SentenceCase;
 
 public class UpdateCommand implements Command {
     private final Receiver taskList;
@@ -39,10 +40,10 @@ public class UpdateCommand implements Command {
         oldData2 = splitPreviousTask[1];
         oldData3 = splitPreviousTask[2];
 
-        data1 = splitPayload[1];
+        data1 = new SentenceCase(splitPayload[1]).sentenceCase();
         String updatedTask = String.join(" ", data1, oldData2, oldData3);
         if (splitPayload.length > 2) {
-            data2 = splitPayload[2];
+            data2 = new SentenceCase(splitPayload[2]).sentenceCase();
             updatedTask = String.join(" ", data1, data2, oldData3);
             if (splitPayload.length > 3) {
                 data3 = splitPayload[3];
