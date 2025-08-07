@@ -1,4 +1,8 @@
 package Commands;
+import Exceptions.CustomException;
+import Receiver.Receiver;
+import EmailValidator.EmailValidator;
+
 public class UpdateCommand implements Command {
     private final Receiver taskList;
     private int index;

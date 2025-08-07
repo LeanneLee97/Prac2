@@ -1,4 +1,8 @@
 package Commands;
+import Receiver.Receiver;
+import Exceptions.CustomException;
+import EmailValidator.EmailValidator;
+
 public class AddCommand implements Command {
     private final Receiver taskList;
     private String data1;

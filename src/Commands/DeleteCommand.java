@@ -1,4 +1,7 @@
 package Commands;
+import Exceptions.CustomException;
+import Receiver.Receiver;
+
 public class DeleteCommand implements Command {
     private final Receiver taskList;
     private int index;
