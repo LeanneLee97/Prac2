@@ -35,7 +35,7 @@ public class UpdateCommand implements Command {
         if(list.isEmpty()){
             throw new CustomException("No tasks available.");
         }
-        if(list.size() < index){
+        if(list.size() <= index){
             throw new CustomException("Entry cannot be found");
         }
 

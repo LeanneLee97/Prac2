@@ -17,12 +17,17 @@ public class DeleteCommand implements Command {
 
     @Override
     public void execute() throws CustomException {
+        String[] splitPayload = payload.split(" ");
+        if (splitPayload.length != 1) {
+            throw new CustomException("Invalid payload: Expecting only index");
+        }
+
         this.index = Integer.parseInt(payload) - 1;
         ArrayList<String> list = taskList.getAllTasks();
         if(list.isEmpty()){
             throw new CustomException("No tasks available.");
         }
-        if(list.size() < index){
+        if(list.size() <= index){
             throw new CustomException("Entry cannot be found");
         }
         if  (taskList.getTask(index) == null){

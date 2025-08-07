@@ -19,7 +19,7 @@ public class Client {
             "list",
             "delete 4",
             "list",
-            "update 4 adam",
+            "delete 4",
             "list"
     };
 
