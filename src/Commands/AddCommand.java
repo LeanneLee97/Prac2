@@ -41,6 +41,7 @@ public class AddCommand implements Command {
 
         String task = String.join(" ", data1, data2, data3);
         taskList.addTask(task);
+        System.out.println("Employee has been added: "+task);
     }
 
     @Override
@@ -54,4 +55,5 @@ public class AddCommand implements Command {
         return true;
     }
 }
+
 
