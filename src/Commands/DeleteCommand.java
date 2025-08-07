@@ -22,7 +22,7 @@ public class DeleteCommand implements Command {
     @Override
     public void undo() {
         if (removedTask != null) {
-            taskList.reAddTask(index, removedTask);
+            taskList.addTask(index, removedTask);
         }
     }
 
@@ -32,3 +32,4 @@ public class DeleteCommand implements Command {
     }
 
 }
+
