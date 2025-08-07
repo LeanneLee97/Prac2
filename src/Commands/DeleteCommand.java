@@ -8,7 +8,7 @@ public class DeleteCommand implements Command {
     private final String payload;
     private String removedTask;
 
-    public DeleteCommand(Receiver taskList, String payload) throws CustomException {
+    public DeleteCommand(Receiver taskList, String payload) {
         this.taskList = taskList;
         this.payload = payload;
     }

@@ -26,7 +26,12 @@ public class AddCommand implements Command {
 
         data1 = new SentenceCase(splitPayload[0]).sentenceCase();
         data2 = new SentenceCase(splitPayload[1]).sentenceCase();
-        data3 = splitPayload[2];
+        if (splitPayload[2].contains("@")){
+            data3 = splitPayload[2];
+        }
+        else{
+            data3 = new SentenceCase(splitPayload[2]).sentenceCase();
+        }
 
         if (!EmailValidator.isValidEmail(data3)) {
             throw new CustomException("Invalid email");

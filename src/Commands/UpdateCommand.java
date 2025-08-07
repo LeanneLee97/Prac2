@@ -46,7 +46,14 @@ public class UpdateCommand implements Command {
             data2 = new SentenceCase(splitPayload[2]).sentenceCase();
             updatedTask = String.join(" ", data1, data2, oldData3);
             if (splitPayload.length > 3) {
-                data3 = splitPayload[3];
+
+                if (splitPayload[3].contains("@")){
+                    data3 = splitPayload[3];
+                }
+                else{
+                    data3 = new SentenceCase(splitPayload[3]).sentenceCase();
+                }
+
                 if (!EmailValidator.isValidEmail(data3)) {
                     throw new CustomException("Invalid email");
                 }
