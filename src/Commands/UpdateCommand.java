@@ -33,6 +33,7 @@ public class UpdateCommand implements Command {
         if (taskList.getTask(index) == null){
             throw new CustomException("Invalid payload: Nothing to update");
         }
+
         //taskList.validateTask(data3);
         previousTask = taskList.getTask(index);
         String[] splitPreviousTask = previousTask.split(" ");
