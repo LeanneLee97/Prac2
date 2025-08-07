@@ -15,6 +15,9 @@ public class Invoker {
         if (cmdToExecute != null) {
             for (Command command : cmdToExecute) {
                 try {
+                    if (command == null) {
+                        throw new CustomException("Invalid Command");
+                    }
                     command.execute();
                     if (command.isStackable()) {
                         history.push(command);

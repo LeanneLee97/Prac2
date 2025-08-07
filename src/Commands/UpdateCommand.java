@@ -72,7 +72,7 @@ public class UpdateCommand implements Command {
         }
 
         taskList.updateTask(index, updatedTask);
-        System.out.println("record has been updated");
+        System.out.println("update");
 
         //System.out.println(data1 + data2 + data3);
     }
@@ -81,7 +81,7 @@ public class UpdateCommand implements Command {
     public void undo() {
 
         taskList.updateTask(index, previousTask);
-        System.out.println("update record has been undone");
+        System.out.println("undo");
     }
 
     @Override

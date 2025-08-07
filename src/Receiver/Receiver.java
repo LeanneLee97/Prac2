@@ -18,6 +18,9 @@ public class Receiver {
     public ArrayList<String> loadFromFile() {
         Path path = Path.of(FILE_PATH);
         try {
+            if (!Files.exists(path)) {
+                Files.createFile(path);
+            }
             List<String> lines = Files.readAllLines(path);
             return new ArrayList<>(lines);
         } catch (IOException e) {

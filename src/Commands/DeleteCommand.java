@@ -34,14 +34,14 @@ public class DeleteCommand implements Command {
             throw new CustomException("Invalid payload: Nothing to delete");
         }
         removedTask = taskList.deleteTask(index);
-        System.out.println("record has been deleted");
+        System.out.println("Delete");
     }
 
     @Override
     public void undo() {
         if (removedTask != null) {
             taskList.addTask(index, removedTask);
-            System.out.println("delete record has been undone");
+            System.out.println("undo");
         }
     }
 
