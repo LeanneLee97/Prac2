@@ -5,10 +5,11 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Receiver {
     private ArrayList<String> taskList = new ArrayList<>();
-    private static final String FILE_PATH = "src/dataStore.txt";
+    private static final String FILE_PATH = "./dataStore.txt";
 
     public Receiver() {
         this.taskList = loadFromFile();
@@ -17,10 +18,10 @@ public class Receiver {
     public ArrayList<String> loadFromFile() {
         Path path = Path.of(FILE_PATH);
         try {
-            Files.readAllLines(path);
-            return new ArrayList<>();
+            List<String> lines = Files.readAllLines(path);
+            return new ArrayList<>(lines);
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Error reading file");
             return new ArrayList<>();
         }
     }
@@ -30,7 +31,7 @@ public class Receiver {
         try {
             Files.write(path, taskList);
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Error writing file");
         }
     }
 

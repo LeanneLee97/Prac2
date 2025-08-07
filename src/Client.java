@@ -13,29 +13,13 @@ public class Client {
 
     String[] inputs = {
             "add First_name Last_name Email",
-            "add John Doe simple@example.com",
+            "add ^John Doe simple@example.com",
             "add hanna Moon tetter.tots@potatoesarelife.com",
             "add Ah Boon green-tea@teaforlife.com",
             "list",
-            "update 3 Adam",
+            "delete 4",
             "list",
-            "undo",
-            "list",
-            "update 30 Adam Sun",
-            "list",
-            "undo",
-            "list",
-            "update 3 Adam Sun adamisbest@umail.com",
-            "list",
-            "undo",
-            "list",
-            "update 3 adam",
-            "list",
-            "update 1 blue bell ice-cream@alaskaFields.org",
-            "list",
-            "delete 10",
-            "list",
-            "undo",
+            "update 4 adam",
             "list"
     };
 
