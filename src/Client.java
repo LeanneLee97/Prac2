@@ -5,11 +5,8 @@ import Receiver.Receiver;
 
 import java.util.Stack;
 
-/**
- * For testing purposes only
- */
 public class Client {
-public static void main(String[] args) throws CustomException {
+    public static void main(String[] args) throws CustomException {
     Stack<Command> history = new Stack<>();
     Receiver receiver = new Receiver();
     Invoker invoker = new Invoker();
