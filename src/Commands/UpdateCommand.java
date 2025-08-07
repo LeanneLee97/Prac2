@@ -27,9 +27,9 @@ public class UpdateCommand implements Command {
             throw new CustomException("Invalid payload: Expecting " +
                     "2 to 4 data fields");
         }
-        index = Integer.parseInt(splitPayload[0]) - 1;
+        index = Integer.parseInt(splitPayload[0]) - 1 ;
 
-        if (index == 0){
+        if (taskList.getTask(index) == null){
             throw new CustomException("Invalid payload: Nothing to update");
         }
         //taskList.validateTask(data3);

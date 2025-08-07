@@ -16,7 +16,7 @@ public class DeleteCommand implements Command {
     @Override
     public void execute() throws CustomException {
         this.index = Integer.parseInt(payload);
-        if  (index == 0){
+        if  (taskList.getTask(index) == null){
             throw new CustomException("Invalid payload: Nothing to delete");
         }
         removedTask = taskList.deleteTask(index);
