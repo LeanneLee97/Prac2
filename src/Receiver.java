@@ -46,7 +46,7 @@ public class Receiver {
         return taskList.remove(index);
     }
 
-    public void reAddTask(int index, String removedTask) {
+    public void addTask(int index, String removedTask) {
         taskList.add(index, removedTask);
     }
 
@@ -62,3 +62,4 @@ public class Receiver {
         return new ArrayList<>(taskList); // returns a copy
     }
 }
+
