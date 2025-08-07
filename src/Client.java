@@ -33,7 +33,7 @@ public class Client {
             "list",
             "update 1 blue bell ice-cream@alaskaFields.org",
             "list",
-            "delete 1",
+            "delete 10",
             "list",
             "undo",
             "list"
