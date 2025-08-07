@@ -17,7 +17,7 @@ public static void main(String[] args) throws CustomException {
     String[] inputs = {
             "add First_name Last_name Email",
             "add John Doe simple@example.com",
-            "add Hanna Moon tetter.tots@potatoesarelife.com",
+            "add hanna Moon tetter.tots@potatoesarelife.com",
             "add Ah Boon green-tea@teaforlife.com",
             "list",
             "update 3 Adam",
@@ -32,7 +32,7 @@ public static void main(String[] args) throws CustomException {
             "list",
             "undo",
             "list",
-            "update 3 Adam",
+            "update 3 adam",
             "list",
             "update 1 blue bell ice-cream@alaskaFields.org",
             "list",
