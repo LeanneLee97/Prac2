@@ -4,6 +4,8 @@ import Receiver.Receiver;
 import Validator.EmailValidator;
 import Validator.SentenceCase;
 
+import java.util.ArrayList;
+
 public class UpdateCommand implements Command {
     private final Receiver taskList;
     private int index;
@@ -29,6 +31,13 @@ public class UpdateCommand implements Command {
                     "2 to 4 data fields");
         }
         index = Integer.parseInt(splitPayload[0]) - 1 ;
+        ArrayList<String> list = taskList.getAllTasks();
+        if(list.isEmpty()){
+            throw new CustomException("No tasks available.");
+        }
+        if(list.size() < index){
+            throw new CustomException("Entry cannot be found");
+        }
 
         if (taskList.getTask(index) == null){
             throw new CustomException("Invalid payload: Nothing to update");

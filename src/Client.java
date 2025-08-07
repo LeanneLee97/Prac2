@@ -21,7 +21,7 @@ public class Client {
             "list",
             "undo",
             "list",
-            "update 3 Adam Sun",
+            "update 30 Adam Sun",
             "list",
             "undo",
             "list",
