@@ -13,7 +13,16 @@ public class Client {
 
     String[] inputs = {
             "ADd    Adam    Moon     hello@gmail.com",
-            "delete            3"
+            "list",
+            "update 1 !john ",
+            "list",
+            "undo",
+            "list",
+            "undo",
+            "undo",
+            "list",
+            "list",
+            "undo",
     };
 
     for (String input : inputs) {
