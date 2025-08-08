@@ -33,10 +33,10 @@ public class DeleteCommand implements Command {
             throw new CustomException("No tasks available.");
         }
         if(list.size() <= index){
-            throw new CustomException("Entry cannot be found");
+            throw new CustomException("No entry to delete");
         }
         if  (taskList.getTask(index) == null){
-            throw new CustomException("Invalid payload: Nothing to delete");
+            throw new CustomException("No entry to delete");
         }
         removedTask = taskList.deleteTask(index);
         System.out.println("Delete");
