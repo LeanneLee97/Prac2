@@ -17,13 +17,16 @@ public class DeleteCommand implements Command {
 
     @Override
     public void execute() throws CustomException {
-        String[] splitPayload = payload.split(" ");
+        String[] splitPayload = payload.split("\\s+");
         if (splitPayload.length != 1) {
             throw new CustomException("Invalid payload: Expecting only index");
         }
 
         try {
             this.index = Integer.parseInt(payload.trim()) - 1;
+            if (index < 0){
+                throw new CustomException("Index should be positive number");
+            }
         } catch (NumberFormatException e) {
             throw new CustomException("Invalid index: not a number");
         }
@@ -32,9 +35,8 @@ public class DeleteCommand implements Command {
         if(list.isEmpty()){
             throw new CustomException("No tasks available.");
         }
-
         if(list.size() <= index){
-            throw new CustomException("Index larger than task list size");
+            throw new CustomException("No entry to delete");
         }
         if  (taskList.getTask(index) == null){
             throw new CustomException("No entry to delete");
