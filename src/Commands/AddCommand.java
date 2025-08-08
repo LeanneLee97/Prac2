@@ -5,10 +5,10 @@ import Validator.*;
 
 /**
  * Class used to add new entries into taskList. This command expects a
- * payload consisting of <data1>, <data2> and <data3></>. <data1> and
- * <data2></> should be formatted to be Titlecase. <data3></> only able to
- * accept a single email address or Latin letters (case-insensitive), digits 0 to 9 and
- * underscores.
+ * payload consisting of {@code data1},  {@code data2} and {@code data3}. 
+ * {@code data1} and {@code data2} should be formatted to be Titlecase. 
+ * {@code data3} only able to accept a single email address or Latin letters 
+ * (case-insensitive), digits 0 to 9 and underscores.
  */
 public class AddCommand implements Command {
     private final Receiver taskList;
@@ -84,5 +84,6 @@ public class AddCommand implements Command {
         return true;
     }
 }
+
 
 
