@@ -50,20 +50,17 @@ public class Client {
         if (lowerCase.startsWith("add")) {
             String payload = input.substring(4).trim();
             command = new AddCommand(receiver, payload);
-        } else if (input.startsWith("update ")) {
+        }  if (input.startsWith("update ")) {
             String payload = input.substring(7).trim();
             command = new UpdateCommand(receiver, payload);
-        } else if (input.startsWith("delete ")) {
+        }  if (input.startsWith("delete ")) {
             String payload = input.substring(7).trim();
             command = new DeleteCommand(receiver, payload);
-        } else if (input.equalsIgnoreCase("list")) {
+        }  if (input.equalsIgnoreCase("list")) {
             command = new ListCommand(receiver);
-        } else if (input.equalsIgnoreCase("undo")) {
+        }  if (input.equalsIgnoreCase("undo")) {
             command = new UndoCommand(receiver, history);
-        } else {
-            System.out.println("Unknown command.");
-            continue;
-        }
+        } 
 
         invoker.setCommandsForExecution(new Command[]{command});
         invoker.executeCommand(history);
@@ -75,4 +72,5 @@ public class Client {
     receiver.storeToFile();
 }
 }
+
 
