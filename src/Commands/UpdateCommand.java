@@ -36,11 +36,11 @@ public class UpdateCommand implements Command {
             throw new CustomException("No tasks available.");
         }
         if(list.size() <= index){
-            throw new CustomException("Entry cannot be found");
+            throw new CustomException("No entry to update");
         }
 
         if (taskList.getTask(index) == null){
-            throw new CustomException("Invalid payload: Nothing to update");
+            throw new CustomException("No entry to update");
         }
 
         //taskList.validateTask(data3);

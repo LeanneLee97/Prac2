@@ -25,7 +25,10 @@ public class Client {
             "list",
             "undo",
             "list",
-            "update "
+            "delete 1",
+            "list",
+            "delete 7",
+            "update 12 Steven"
     };
 
     for (String input : inputs) {
