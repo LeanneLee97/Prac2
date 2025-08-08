@@ -23,7 +23,7 @@ public class DeleteCommand implements Command {
         }
 
         try {
-            this.index = Integer.parseInt(payload.trim()) - 1;
+            this.index = Integer.parseInt(payload) - 1;
             if (index < 0){
                 throw new CustomException("Index should be positive number");
             }
@@ -59,4 +59,5 @@ public class DeleteCommand implements Command {
     }
 
 }
+
 
