@@ -1,8 +1,7 @@
 package Commands;
 import Receiver.Receiver;
 import Exceptions.CustomException;
-import Validator.EmailValidator;
-import Validator.TitleCase;
+import Validator.*;
 
 public class AddCommand implements Command {
     private final Receiver taskList;
@@ -34,14 +33,15 @@ public class AddCommand implements Command {
         }
 
         if (!EmailValidator.isValidEmail(data3)) {
+            System.out.println("hi");
             throw new CustomException("Invalid email");
         }
 
-        //taskList.validateTask(data3);
+            //taskList.validateTask(data3);
 
-        String task = String.join(" ", data1, data2, data3);
-        taskList.addTask(task);
-        System.out.println("add");
+            String task = String.join(" ", data1, data2, data3);
+            taskList.addTask(task);
+            System.out.println("add");
     }
 
     @Override

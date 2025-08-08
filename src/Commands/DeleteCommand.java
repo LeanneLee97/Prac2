@@ -22,7 +22,12 @@ public class DeleteCommand implements Command {
             throw new CustomException("Invalid payload: Expecting only index");
         }
 
-        this.index = Integer.parseInt(payload) - 1;
+        try {
+            this.index = Integer.parseInt(payload.trim()) - 1;
+        } catch (NumberFormatException e) {
+            throw new CustomException("Invalid index: not a number");
+        }
+
         ArrayList<String> list = taskList.getAllTasks();
         if(list.isEmpty()){
             throw new CustomException("No tasks available.");
