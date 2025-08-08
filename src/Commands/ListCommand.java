@@ -12,10 +12,12 @@ public class ListCommand implements Command {
 
     @Override
     public void execute() throws CustomException {
+
         ArrayList<String> list = taskList.getAllTasks();
 
         if (list.isEmpty()) {
-            throw new CustomException("No tasks available.");
+            System.out.println("list");
+            System.out.println("No tasks available.");
         } else {
             System.out.println("list");
             for (int i = 0; i < list.size(); i++) {

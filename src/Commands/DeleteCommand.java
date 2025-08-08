@@ -23,12 +23,16 @@ public class DeleteCommand implements Command {
         }
 
         this.index = Integer.parseInt(payload) - 1;
+
+
+
         ArrayList<String> list = taskList.getAllTasks();
         if(list.isEmpty()){
             throw new CustomException("No tasks available.");
         }
+
         if(list.size() <= index){
-            throw new CustomException("No entry to delete");
+            throw new CustomException("Index larger than task list size");
         }
         if  (taskList.getTask(index) == null){
             throw new CustomException("No entry to delete");
