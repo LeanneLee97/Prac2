@@ -8,7 +8,6 @@ import java.util.Stack;
 
 /**
  * Represents a command to undo the last executed stackable command.
- * <p>
  * This command retrieves the most recent {@link Command} from the history stack
  * and calls its {@code undo()} method to revert its effect.
  * The {@code UndoCommand} itself is not stackable, meaning it will not be stored
@@ -66,3 +65,4 @@ public class UndoCommand implements Command {
         return false;
     }
 }
+
