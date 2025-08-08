@@ -15,12 +15,15 @@ public class Invoker {
         if (cmdToExecute != null) {
             for (Command command : cmdToExecute) {
                 try {
+                    if (command == null) {
+                        throw new CustomException("Invalid Command");
+                    }
                     command.execute();
                     if (command.isStackable()) {
                         history.push(command);
                     }
                 } catch (CustomException e) {
-                    System.out.println("Command failed: " + e.getMessage());
+                    System.out.println(("Command failed: " + e.getMessage()));
                 }
             }
         }

@@ -2,7 +2,7 @@ package Commands;
 import Receiver.Receiver;
 import Exceptions.CustomException;
 import Validator.EmailValidator;
-import Validator.SentenceCase;
+import Validator.TitleCase;
 
 public class AddCommand implements Command {
     private final Receiver taskList;
@@ -24,13 +24,13 @@ public class AddCommand implements Command {
                     "data fields");
         }
 
-        data1 = new SentenceCase(splitPayload[0]).sentenceCase();
-        data2 = new SentenceCase(splitPayload[1]).sentenceCase();
+        data1 = new TitleCase(splitPayload[0]).titleCase();
+        data2 = new TitleCase(splitPayload[1]).titleCase();
         if (splitPayload[2].contains("@")){
             data3 = splitPayload[2];
         }
         else{
-            data3 = new SentenceCase(splitPayload[2]).sentenceCase();
+            data3 = new TitleCase(splitPayload[2]).titleCase();
         }
 
         if (!EmailValidator.isValidEmail(data3)) {
@@ -41,14 +41,14 @@ public class AddCommand implements Command {
 
         String task = String.join(" ", data1, data2, data3);
         taskList.addTask(task);
-        System.out.println("record has been added");
+        System.out.println("add");
     }
 
     @Override
     public void undo() {
         String task = String.join(" ", data1, data2, data3);
-        taskList.removeTask(task);
-        System.out.println("add record has been undone");
+        taskList.deleteTask(task);
+        System.out.println("Undo");
     }
 
     @Override

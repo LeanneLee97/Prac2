@@ -1,7 +1,6 @@
 package Receiver;
 
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -18,6 +17,9 @@ public class Receiver {
     public ArrayList<String> loadFromFile() {
         Path path = Path.of(FILE_PATH);
         try {
+            if (!Files.exists(path)) {
+                Files.createFile(path);
+            }
             List<String> lines = Files.readAllLines(path);
             return new ArrayList<>(lines);
         } catch (IOException e) {
@@ -39,7 +41,7 @@ public class Receiver {
         taskList.add(task);
     }
 
-    public void removeTask(String task) {
+    public void deleteTask(String task) {
         taskList.remove(task);
     }
 

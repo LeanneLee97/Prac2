@@ -17,8 +17,9 @@ public class ListCommand implements Command {
         if (list.isEmpty()) {
             throw new CustomException("No tasks available.");
         } else {
+            System.out.println("list");
             for (int i = 0; i < list.size(); i++) {
-                System.out.println((i+1) + ": " + list.get(i));
+                System.out.printf("%02d. %s%n", i + 1, list.get(i));
             }
         }
         taskList.getAllTasks();

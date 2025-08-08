@@ -2,7 +2,7 @@ package Commands;
 import Exceptions.CustomException;
 import Receiver.Receiver;
 import Validator.EmailValidator;
-import Validator.SentenceCase;
+import Validator.TitleCase;
 
 import java.util.ArrayList;
 
@@ -36,11 +36,11 @@ public class UpdateCommand implements Command {
             throw new CustomException("No tasks available.");
         }
         if(list.size() <= index){
-            throw new CustomException("Entry cannot be found");
+            throw new CustomException("No entry to update");
         }
 
         if (taskList.getTask(index) == null){
-            throw new CustomException("Invalid payload: Nothing to update");
+            throw new CustomException("No entry to update");
         }
 
         //taskList.validateTask(data3);
@@ -50,10 +50,10 @@ public class UpdateCommand implements Command {
         oldData2 = splitPreviousTask[1];
         oldData3 = splitPreviousTask[2];
 
-        data1 = new SentenceCase(splitPayload[1]).sentenceCase();
+        data1 = new TitleCase(splitPayload[1]).titleCase();
         String updatedTask = String.join(" ", data1, oldData2, oldData3);
         if (splitPayload.length > 2) {
-            data2 = new SentenceCase(splitPayload[2]).sentenceCase();
+            data2 = new TitleCase(splitPayload[2]).titleCase();
             updatedTask = String.join(" ", data1, data2, oldData3);
             if (splitPayload.length > 3) {
 
@@ -61,7 +61,7 @@ public class UpdateCommand implements Command {
                     data3 = splitPayload[3];
                 }
                 else{
-                    data3 = new SentenceCase(splitPayload[3]).sentenceCase();
+                    data3 = new TitleCase(splitPayload[3]).titleCase();
                 }
 
                 if (!EmailValidator.isValidEmail(data3)) {
@@ -72,7 +72,7 @@ public class UpdateCommand implements Command {
         }
 
         taskList.updateTask(index, updatedTask);
-        System.out.println("record has been updated");
+        System.out.println("update");
 
         //System.out.println(data1 + data2 + data3);
     }
@@ -81,7 +81,7 @@ public class UpdateCommand implements Command {
     public void undo() {
 
         taskList.updateTask(index, previousTask);
-        System.out.println("update record has been undone");
+        System.out.println("undo");
     }
 
     @Override
