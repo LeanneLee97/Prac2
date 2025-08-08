@@ -4,7 +4,15 @@ import Receiver.Receiver;
 import Validator.*;
 
 import java.util.ArrayList;
-
+/**
+ * The UpdateCommand class represents a command that updates an existing task entry
+ * in the task list managed by the Receiver. It supports undo functionality.
+ *
+ * This class validates the input payload, ensures the index is within range,
+ * and optionally updates 1 to 3 fields of a task entry based on the payload structure.
+ *
+ * The command is stackable, meaning it can be pushed to a history stack for undo operations.
+ */
 public class UpdateCommand implements Command {
     private final Receiver taskList;
     private int index;
@@ -16,12 +24,22 @@ public class UpdateCommand implements Command {
     private String oldData2;
     private String oldData3;
     private final String payload;
-
+    /**
+     * Constructs an UpdateCommand with a receiver and the user-provided payload.
+     *
+     * @param taskList the Receiver that manages the task data
+     * @param payload  the input payload string to parse and use for the update
+     */
     public UpdateCommand(Receiver taskList, String payload) {
         this.taskList = taskList;
         this.payload = payload;
     }
-
+    /**
+     * Executes the update operation by parsing the payload, validating the index
+     * and data fields, and updating the corresponding task in the task list.
+     *
+     * @throws CustomException if input validation fails or update cannot be completed
+     */
     @Override
     public void execute() throws CustomException {
         String[] splitPayload = payload.split("\\s+");
@@ -90,15 +108,23 @@ public class UpdateCommand implements Command {
         //System.out.println(data1 + data2 + data3);
     }
 
+    /**
+     * Undoes the update by restoring the previous task entry at the original index.
+     */
     @Override
     public void undo() {
 
         taskList.updateTask(index, previousTask);
         System.out.println("undo");
     }
-
+    /**
+     * Indicates that this command is stackable (supports undo).
+     *
+     * @return true because update commands can be undone
+     */
     @Override
     public boolean isStackable() {
         return true;
     }
 }
+
