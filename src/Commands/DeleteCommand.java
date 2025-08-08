@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 /**
  * Class used to delete entries from taskList. This command expects a
- * payload consisting of <index>. <index></> should be an integer value.
+ * payload consisting of {@code index}. {@code index} should be an integer value.
  */
 public class DeleteCommand implements Command {
     private final Receiver taskList;
@@ -74,3 +74,4 @@ public class DeleteCommand implements Command {
         return true;
     }
 }
+
