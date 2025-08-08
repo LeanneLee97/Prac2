@@ -12,26 +12,28 @@ public class Client {
     Invoker invoker = new Invoker();
 
     String[] inputs = {
-            "add firstname lastname -",
+            "ADD John Doe john@a.com",
+            "list"
 
     };
 
     for (String input : inputs) {
-        System.out.println(input);
+        //System.out.println(input);
         Command command = null;
+        String lowerCase = input.toLowerCase();
 
-        if (input.startsWith("add ")) {
+        if (lowerCase.startsWith("add ")) {
             String payload = input.substring(4).trim();
             command = new AddCommand(receiver, payload);
-        }  if (input.startsWith("update ")) {
+        } if (lowerCase.startsWith("update ")) {
             String payload = input.substring(7).trim();
             command = new UpdateCommand(receiver, payload);
-        }  if (input.startsWith("delete ")) {
+        }  if (lowerCase.startsWith("delete ")) {
             String payload = input.substring(7).trim();
             command = new DeleteCommand(receiver, payload);
-        }  if (input.equalsIgnoreCase("list")) {
+        }  if (lowerCase.equalsIgnoreCase("list")) {
             command = new ListCommand(receiver);
-        }  if (input.equalsIgnoreCase("undo")) {
+        }  if (lowerCase.equalsIgnoreCase("undo")) {
             command = new UndoCommand(receiver, history);
         }
 

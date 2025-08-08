@@ -1,8 +1,7 @@
 package Commands;
 import Exceptions.CustomException;
 import Receiver.Receiver;
-import Validator.EmailValidator;
-import Validator.TitleCase;
+import Validator.*;
 
 import java.util.ArrayList;
 
@@ -67,14 +66,17 @@ public class UpdateCommand implements Command {
 
                 if (splitPayload[3].contains("@")){
                     data3 = splitPayload[3];
+                    if (!EmailValidator.isValidEntry(data3)) {
+                        throw new CustomException("Invalid email");
+                    }
                 }
                 else{
                     data3 = new TitleCase(splitPayload[3]).titleCase();
+                    if (!WordValidator.isValidEntry(data3)) {
+                        throw new CustomException("Invalid word.");
+                    }
                 }
 
-                if (!EmailValidator.isValidEntry(data3)) {
-                    throw new CustomException("Invalid email");
-                }
                 updatedTask = String.join(" ", data1, data2, data3);
             }
         }
