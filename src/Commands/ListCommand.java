@@ -15,9 +15,10 @@ public class ListCommand implements Command {
         ArrayList<String> list = taskList.getAllTasks();
 
         if (list.isEmpty()) {
-            throw new CustomException("No tasks available.");
+            System.out.println("List");
+            System.out.println("No tasks available.");
         } else {
-            System.out.println("list");
+            System.out.println("List");
             for (int i = 0; i < list.size(); i++) {
                 System.out.printf("%02d. %s%n", i + 1, list.get(i));
             }
@@ -26,8 +27,8 @@ public class ListCommand implements Command {
     }
 
     @Override
-    public void undo(){
-
+    public void undo()  throws CustomException {
+        throw new CustomException("Nothing to Undo");
     }
 
     @Override

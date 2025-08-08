@@ -28,6 +28,9 @@ public class UpdateCommand implements Command {
 
         try {
             index = Integer.parseInt(splitPayload[0]) - 1 ;
+            if (index <= 0){
+                throw new CustomException("Index should be positive number");
+            }
         } catch (NumberFormatException e) {
             throw new CustomException("Invalid index: not a number");
         }

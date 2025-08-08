@@ -24,6 +24,9 @@ public class DeleteCommand implements Command {
 
         try {
             this.index = Integer.parseInt(payload.trim()) - 1;
+            if (index <= 0){
+                throw new CustomException("Index should be positive number");
+            }
         } catch (NumberFormatException e) {
             throw new CustomException("Invalid index: not a number");
         }

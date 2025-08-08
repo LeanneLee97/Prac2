@@ -23,8 +23,9 @@ public class UndoCommand implements Command {
     }
 
     @Override
-    public void undo() {
+    public void undo()  throws CustomException {
         // Not Applicable
+        throw new CustomException("Nothing to Undo");
     }
 
     @Override
