@@ -12,6 +12,7 @@ public class Client {
     Invoker invoker = new Invoker();
 
     String[] inputs = {
+
             "Add First_name Last_name Email",
 //            "add john Doe simple@example.com",
 //            "aDd Hanna moon tetter.tots@potatoesarelife.com",
@@ -39,25 +40,30 @@ public class Client {
 //            "hello",
     };
 
+
+
     for (String input : inputs) {
+
         Command command = null;
         String lowerCase = input.toLowerCase();
 
         if (lowerCase.startsWith("add")) {
             String payload = input.substring(4).trim();
             command = new AddCommand(receiver, payload);
-        }  if (lowerCase.startsWith("update")) {
+        } else if (input.startsWith("update ")) {
             String payload = input.substring(7).trim();
             command = new UpdateCommand(receiver, payload);
-        }  if (lowerCase.startsWith("delete")) {
+        } else if (input.startsWith("delete ")) {
             String payload = input.substring(7).trim();
             command = new DeleteCommand(receiver, payload);
-        }  if (lowerCase.equalsIgnoreCase("list")) {
+        } else if (input.equalsIgnoreCase("list")) {
             command = new ListCommand(receiver);
-        }  if (lowerCase.equalsIgnoreCase("undo")) {
+        } else if (input.equalsIgnoreCase("undo")) {
             command = new UndoCommand(receiver, history);
+        } else {
+            System.out.println("Unknown command.");
+            continue;
         }
-
 
         invoker.setCommandsForExecution(new Command[]{command});
         invoker.executeCommand(history);

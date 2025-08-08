@@ -19,7 +19,7 @@ public class ListCommand implements Command {
             System.out.println("list");
             System.out.println("No tasks available.");
         } else {
-            System.out.println("list");
+            System.out.println("List");
             for (int i = 0; i < list.size(); i++) {
                 System.out.printf("%02d. %s%n", i + 1, list.get(i));
             }
@@ -37,3 +37,4 @@ public class ListCommand implements Command {
         return false;
     }
 }
+

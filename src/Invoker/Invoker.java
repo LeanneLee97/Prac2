@@ -23,7 +23,9 @@ public class Invoker {
                         history.push(command);
                     }
                 } catch (CustomException e) {
-                    System.out.println(("Command failed: " + e.getMessage()));
+
+                    System.out.println("Command failed: " + e.getMessage());
+
                 }
             }
         }

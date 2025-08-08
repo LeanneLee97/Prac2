@@ -30,7 +30,12 @@ public class UpdateCommand implements Command {
             throw new CustomException("Invalid payload: Expecting " +
                     "2 to 4 data fields");
         }
-        index = Integer.parseInt(splitPayload[0]) - 1 ;
+        
+        try {
+            index = Integer.parseInt(splitPayload[0]) - 1 ;
+        } catch (NumberFormatException e) {
+            throw new CustomException("Invalid index: not a number");
+        }
         ArrayList<String> list = taskList.getAllTasks();
         if(list.isEmpty()){
             throw new CustomException("No tasks available.");
@@ -88,4 +93,5 @@ public class UpdateCommand implements Command {
     public boolean isStackable() {
         return true;
     }
+
 }
