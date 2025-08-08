@@ -25,17 +25,20 @@ public class AddCommand implements Command {
 
         data1 = new TitleCase(splitPayload[0]).titleCase();
         data2 = new TitleCase(splitPayload[1]).titleCase();
-        if (splitPayload[2].contains("@")){
+        if (splitPayload[2].contains("@")){ // check email
             data3 = splitPayload[2];
+            if (!EmailValidator.isValidEntry(data3)) {
+                throw new CustomException("Invalid email");
+            }
         }
-        else{
+        else { // check word
             data3 = new TitleCase(splitPayload[2]).titleCase();
+            if (!WordValidator.isValidEntry(data3)) {
+                throw new CustomException("Invalid word.");
+            }
         }
 
-        if (!EmailValidator.isValidEmail(data3)) {
-            System.out.println("hi");
-            throw new CustomException("Invalid email");
-        }
+
 
             //taskList.validateTask(data3);
 

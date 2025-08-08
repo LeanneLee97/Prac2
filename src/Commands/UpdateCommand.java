@@ -26,11 +26,19 @@ public class UpdateCommand implements Command {
     @Override
     public void execute() throws CustomException {
         String[] splitPayload = payload.split(" ");
+
+        try {
+            index = Integer.parseInt(splitPayload[0]) - 1 ;
+        } catch (NumberFormatException e) {
+            throw new CustomException("Invalid index: not a number");
+        }
+
         if(splitPayload.length <2 || splitPayload.length > 4){
             throw new CustomException("Invalid payload: Expecting " +
                     "2 to 4 data fields");
         }
-        index = Integer.parseInt(splitPayload[0]) - 1 ;
+
+
         ArrayList<String> list = taskList.getAllTasks();
         if(list.isEmpty()){
             throw new CustomException("No tasks available.");
@@ -64,7 +72,7 @@ public class UpdateCommand implements Command {
                     data3 = new TitleCase(splitPayload[3]).titleCase();
                 }
 
-                if (!EmailValidator.isValidEmail(data3)) {
+                if (!EmailValidator.isValidEntry(data3)) {
                     throw new CustomException("Invalid email");
                 }
                 updatedTask = String.join(" ", data1, data2, data3);
