@@ -32,8 +32,9 @@ public class DeleteCommand implements Command {
         if(list.isEmpty()){
             throw new CustomException("No tasks available.");
         }
+
         if(list.size() <= index){
-            throw new CustomException("No entry to delete");
+            throw new CustomException("Index larger than task list size");
         }
         if  (taskList.getTask(index) == null){
             throw new CustomException("No entry to delete");

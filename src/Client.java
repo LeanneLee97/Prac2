@@ -13,12 +13,31 @@ public class Client {
 
     String[] inputs = {
 
-            "undo",
-            "delete a",
-            "undo 1.1",
+            "Add First_name Last_name Email",
+//            "add john Doe simple@example.com",
+//            "aDd Hanna moon tetter.tots@potatoesarelife.com",
+//            "ADD Ah Boon
+//            Gr..een-tea@teaforlife.com",
+//            "list",
+//            "update 3 Adam Sun Adamisbest@email.com",
             "list",
-
-
+//            "undo",
+//            "update 3 Adam Sun",
+//            "list",
+//            "undo",
+//            "update 3 Adam",
+//            "list",
+//            "update 1 Blue Bell ice-cream@alaskaFields.org",
+//            "list",
+            "Delete a",
+//            "list",
+//            "undo",
+//            "list",
+//            "delete 1",
+              "list",
+//            "delete 7",
+//            "update 12 Steven",
+//            "hello",
     };
 
 
