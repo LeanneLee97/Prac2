@@ -47,7 +47,7 @@ public class AddCommand implements Command {
     @Override
     public void undo() {
         String task = String.join(" ", data1, data2, data3);
-        taskList.removeTask(task);
+        taskList.deleteTask(task);
         System.out.println("Undo");
     }
 

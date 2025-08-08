@@ -12,19 +12,23 @@ public class Client {
     Invoker invoker = new Invoker();
 
     String[] inputs = {
+
             "undo",
             "delete a",
             "undo 1.1",
             "list",
-            "delete 4",
+
 
     };
 
-    for (String input : inputs) {
-        System.out.println(input);
-        Command command = null;
 
-        if (input.startsWith("add ")) {
+
+    for (String input : inputs) {
+
+        Command command = null;
+        String lowerCase = input.toLowerCase();
+
+        if (lowerCase.startsWith("add")) {
             String payload = input.substring(4).trim();
             command = new AddCommand(receiver, payload);
         } else if (input.startsWith("update ")) {
