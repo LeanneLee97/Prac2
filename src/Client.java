@@ -12,55 +12,29 @@ public class Client {
     Invoker invoker = new Invoker();
 
     String[] inputs = {
-
-            "Add First_name Last_name Email",
-//            "add john Doe simple@example.com",
-//            "aDd Hanna moon tetter.tots@potatoesarelife.com",
-//            "ADD Ah Boon
-//            Gr..een-tea@teaforlife.com",
-//            "list",
-//            "update 3 Adam Sun Adamisbest@email.com",
-            "list",
-//            "undo",
-//            "update 3 Adam Sun",
-//            "list",
-//            "undo",
-//            "update 3 Adam",
-//            "list",
-//            "update 1 Blue Bell ice-cream@alaskaFields.org",
-//            "list",
-            "Delete a",
-//            "list",
-//            "undo",
-//            "list",
-//            "delete 1",
-              "list",
-//            "delete 7",
-//            "update 12 Steven",
-//            "hello",
+            "ADd    Adam    Moon     hello@gmail.com",
+            "delete            3"
     };
 
-
-
     for (String input : inputs) {
-
+        //System.out.println(input);
         Command command = null;
         String lowerCase = input.toLowerCase();
 
-        if (lowerCase.startsWith("add")) {
+        if (lowerCase.startsWith("add ")) {
             String payload = input.substring(4).trim();
             command = new AddCommand(receiver, payload);
-        }  if (input.startsWith("update ")) {
+        } if (lowerCase.startsWith("update ")) {
             String payload = input.substring(7).trim();
             command = new UpdateCommand(receiver, payload);
-        }  if (input.startsWith("delete ")) {
+        }  if (lowerCase.startsWith("delete ")) {
             String payload = input.substring(7).trim();
             command = new DeleteCommand(receiver, payload);
-        }  if (input.equalsIgnoreCase("list")) {
+        }  if (lowerCase.equalsIgnoreCase("list")) {
             command = new ListCommand(receiver);
-        }  if (input.equalsIgnoreCase("undo")) {
+        }  if (lowerCase.equalsIgnoreCase("undo")) {
             command = new UndoCommand(receiver, history);
-        } 
+        }
 
         invoker.setCommandsForExecution(new Command[]{command});
         invoker.executeCommand(history);

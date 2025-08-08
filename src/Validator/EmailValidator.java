@@ -1,20 +1,18 @@
 package Validator;
 
 public class EmailValidator {
-    public static boolean isValidEmail(String email) {
+    public static boolean isValidEntry(String email) {
 
-        if (!email.contains("@")) {
-            return true;
-        } // placeholder for now, we need a checking logic to look for "@" in the email vs word
+// placeholder for now, we need a checking logic to look for "@" in the email vs word
+            String regex =
+                    "(^[A-Za-z0-9_]+(?:[.-][A-Za-z0-9_]+)*" +    // local part
+                            "@" +
+                            "(?!.*[_])" +                                // no underscore in domain
+                            "[A-Za-z0-9]+(?:[.-][A-Za-z0-9]+)*" +       // domain
+                            "\\.[a-z]{2,3}$)";
+            // extension (2-3 lowercase letters)
+            return email.matches(regex);//
 
-        String regex =
-                "(^[A-Za-z0-9_]+(?:[.-][A-Za-z0-9_]+)*" +    // local part
-                        "@" +
-                        "(?!.*[_])" +                                // no underscore in domain
-                        "[A-Za-z0-9]+(?:[.-][A-Za-z0-9]+)*" +       // domain
-                        "\\.[a-z]{2,3}$)";
-        return email.matches(regex);//
-        // extension (2-3 lowercase letters)
     }
 }
 
