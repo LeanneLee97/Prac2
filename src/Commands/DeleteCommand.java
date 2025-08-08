@@ -4,17 +4,33 @@ import Receiver.Receiver;
 
 import java.util.ArrayList;
 
+/**
+ * Class used to delete entries from taskList. This command expects a
+ * payload consisting of <index>. <index></> should be an integer value.
+ */
 public class DeleteCommand implements Command {
     private final Receiver taskList;
     private int index;
     private final String payload;
     private String removedTask;
 
+    /**
+     * Constructs a {@code DeleteCommand} with the specified receiver and input payload.
+     *
+     * @param taskList the receiver that manages the task list
+     * @param payload the input string containing the index of the task to delete
+     */
     public DeleteCommand(Receiver taskList, String payload) {
         this.taskList = taskList;
         this.payload = payload;
     }
 
+    /**
+     * Executes the delete command by validating the index and removing the corresponding task.
+     *
+     * @throws CustomException if the payload is invalid, the index is out of bounds,
+     *                         or the task list is empty
+     */
     @Override
     public void execute() throws CustomException {
         String[] splitPayload = payload.split("\\s+");
@@ -57,7 +73,4 @@ public class DeleteCommand implements Command {
     public boolean isStackable() {
         return true;
     }
-
 }
-
-
