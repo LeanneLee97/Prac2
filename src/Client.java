@@ -12,7 +12,8 @@ public class Client {
     Invoker invoker = new Invoker();
 
     String[] inputs = {
-            "ADD Adam Moon tetter.tots@potatoesarelife.com",
+            "ADd    Adam    Moon     hello@gmail.com",
+            "delete            3"
     };
 
     for (String input : inputs) {

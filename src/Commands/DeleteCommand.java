@@ -17,7 +17,7 @@ public class DeleteCommand implements Command {
 
     @Override
     public void execute() throws CustomException {
-        String[] splitPayload = payload.split(" ");
+        String[] splitPayload = payload.split("\\s+");
         if (splitPayload.length != 1) {
             throw new CustomException("Invalid payload: Expecting only index");
         }

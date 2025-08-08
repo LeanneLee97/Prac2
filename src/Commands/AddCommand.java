@@ -17,7 +17,7 @@ public class AddCommand implements Command {
 
     @Override
     public void execute() throws CustomException{
-        String[] splitPayload = payload.split(" ");
+        String[] splitPayload = payload.split("\\s+");
         if (splitPayload.length != 3) {
             throw new CustomException("Invalid payload: Expecting 3 " +
                     "data fields");
