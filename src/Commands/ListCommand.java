@@ -12,6 +12,7 @@ public class ListCommand implements Command {
 
     @Override
     public void execute() throws CustomException {
+
         ArrayList<String> list = taskList.getAllTasks();
 
         if (list.isEmpty()) {
@@ -36,3 +37,4 @@ public class ListCommand implements Command {
         return false;
     }
 }
+
