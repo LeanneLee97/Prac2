@@ -24,7 +24,7 @@ public class UpdateCommand implements Command {
 
     @Override
     public void execute() throws CustomException {
-        String[] splitPayload = payload.split(" ");
+        String[] splitPayload = payload.split("\\s+");
 
         try {
             index = Integer.parseInt(splitPayload[0]) - 1 ;
