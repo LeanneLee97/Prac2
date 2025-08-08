@@ -1,8 +1,7 @@
 package Commands;
 import Exceptions.CustomException;
 import Receiver.Receiver;
-import Validator.EmailValidator;
-import Validator.TitleCase;
+import Validator.*;
 
 import java.util.ArrayList;
 
@@ -26,16 +25,22 @@ public class UpdateCommand implements Command {
     @Override
     public void execute() throws CustomException {
         String[] splitPayload = payload.split(" ");
+
+        try {
+            index = Integer.parseInt(splitPayload[0]) - 1 ;
+            if (index < 0){
+                throw new CustomException("Index should be positive number");
+            }
+        } catch (NumberFormatException e) {
+            throw new CustomException("Invalid index: not a number");
+        }
+
         if(splitPayload.length <2 || splitPayload.length > 4){
             throw new CustomException("Invalid payload: Expecting " +
                     "2 to 4 data fields");
         }
-        
-        try {
-            index = Integer.parseInt(splitPayload[0]) - 1 ;
-        } catch (NumberFormatException e) {
-            throw new CustomException("Invalid index: not a number");
-        }
+
+
         ArrayList<String> list = taskList.getAllTasks();
         if(list.isEmpty()){
             throw new CustomException("No tasks available.");
@@ -64,14 +69,17 @@ public class UpdateCommand implements Command {
 
                 if (splitPayload[3].contains("@")){
                     data3 = splitPayload[3];
+                    if (!EmailValidator.isValidEntry(data3)) {
+                        throw new CustomException("Invalid email");
+                    }
                 }
                 else{
                     data3 = new TitleCase(splitPayload[3]).titleCase();
+                    if (!WordValidator.isValidEntry(data3)) {
+                        throw new CustomException("Invalid word.");
+                    }
                 }
 
-                if (!EmailValidator.isValidEmail(data3)) {
-                    throw new CustomException("Invalid email");
-                }
                 updatedTask = String.join(" ", data1, data2, data3);
             }
         }
@@ -93,5 +101,4 @@ public class UpdateCommand implements Command {
     public boolean isStackable() {
         return true;
     }
-
 }
